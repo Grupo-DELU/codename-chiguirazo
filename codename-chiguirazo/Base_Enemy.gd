@@ -2,8 +2,6 @@ extends Movement_sys
 
 class_name Base_Enemy
 
-onready var Movement = get_node("Movemento System")
-
 func _ready():
 	down = true
 	randomize()
@@ -11,14 +9,13 @@ func _ready():
 
 func _process(delta):
 	
-	if !move_check(dir):
-		print("!")
+	if !move_check(dir):    #Cambio de dirección si la entidad va a colisionar
 		change_direction()
 
 func move_check(direction):
-	
+	#Usa cada Raycast para verificar si es posible moverse en su dirección
 	if up == true:
-		if get_node("RayCast2DUp").is_colliding():
+		if get_node("RayCast2DUp").is_colliding(): #Si el Raycast está colisionando, el movimiento no es posible
 			return
 		else:
 			return true
@@ -42,9 +39,9 @@ func move_check(direction):
 			return true
 
 func change_direction():
-	var dir_index = randi() % 4
+	var dir_index = randi() % 4 #PAra elegir otra dirección
 	
-	if up == true:
+	if up == true:       #Cancela el movimiento en una dirección
 			up = false
 	elif down == true:
 			down = false
@@ -53,7 +50,7 @@ func change_direction():
 	elif right == true:
 			right = false
 	
-	match dir_index:
+	match dir_index:     #Y empieza a moverte en otra dirección al azar.
 		0:
 			up = true
 		1:
