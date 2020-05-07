@@ -2,7 +2,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Base_bullet" type="KinematicBody2D"]
+[node name="Base_bullet" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 17
 

@@ -11,6 +11,8 @@ shape = SubResource( 1 )
 
 [node name="Attaku System" type="Node2D" parent="."]
 
+[node name="Shoot_position" type="Position2D" parent="Attaku System"]
+
 [node name="Movemento System" type="Node2D" parent="."]
 
 [node name="Healto System " type="Node2D" parent="."]
