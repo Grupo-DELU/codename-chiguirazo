@@ -1,10 +1,18 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Moving_Entity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Base_Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Moving_Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Base_Enemy.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Enemy_attack_system.gd" type="Script" id=4]
-[ext_resource path="res://Healto_Base.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Attack/Enemy_attack_system.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Healto_Base.gd" type="Script" id=5]
+
+
+
+
+
+
+
+
 
 [node name="Base_Enemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
