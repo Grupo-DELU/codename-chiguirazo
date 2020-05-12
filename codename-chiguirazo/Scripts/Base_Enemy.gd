@@ -2,12 +2,13 @@ extends Movement_sys
 
 class_name Base_Enemy
 
-onready var Movement = get_node("Movemento System")
-
 func _ready():
+	_update_stats()
 	down = true
 	randomize()
 
+func Enem_take_damage(damage):   #Para ducktyping xd
+	$"Healto System".Take_damage(damage)
 
 func _process(delta):
 	

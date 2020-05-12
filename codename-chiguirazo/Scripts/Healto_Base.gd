@@ -4,7 +4,7 @@ class_name Health_sys
 #Atributos
 export(float) var Max_Helth = 6
 var current_helth = Max_Helth
-export(float) var Defense = 0
+var Defense
 
 const DEATH_TIMER = 0.2
 

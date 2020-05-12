@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Base_Playeru.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Base_Playeru.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Lobito.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Attack/Wolf_attack.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Healto_Base.gd" type="Script" id=5]
+
+[node name="LilWolf" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Supuraitu" parent="." index="1"]
+position = Vector2( 10, 0 )
+scale = Vector2( 2, 1.875 )
+texture = ExtResource( 3 )
+
+[node name="Attaku System" parent="." index="2"]
+editor/display_folded = true
+script = ExtResource( 4 )
+
+[node name="Spawner" parent="Attaku System" index="0"]
+position = Vector2( 40, 0 )
+
+[node name="Healto System" parent="." index="4"]
+script = ExtResource( 5 )
