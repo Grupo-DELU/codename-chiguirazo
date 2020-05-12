@@ -5,12 +5,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Healto_System_P.gd" type="Script" id=4]
 
-
-
-
-
 [node name="Base Playeru" index="0" instance=ExtResource( 1 )]
-position = Vector2( 215, 125 )
 script = ExtResource( 2 )
 
 [node name="Supuraitu" parent="." index="1"]
