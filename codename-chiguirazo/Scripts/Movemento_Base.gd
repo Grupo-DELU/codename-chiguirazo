@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name Movement_sys
 
+#Variables manejadas en nodos hijos 
 export(float) var damage = 2 setget damage_change
 export(float) var Defense = 1 setget defense_change
 
@@ -35,7 +36,6 @@ func _update_stats():
 func move_left():
 	left = true
 
-
 func move_right():
 	right = true
 	
@@ -60,4 +60,5 @@ func _physics_process(delta: float) -> void:
 		dir = dir.normalized() * speed
 		
 	move_and_slide(dir)
-	
+
+

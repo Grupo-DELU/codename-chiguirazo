@@ -12,11 +12,11 @@ func Enem_take_damage(damage):   #Para ducktyping xd
 
 func _process(delta):
 	
-	if !move_check(dir):
+	if !move_check(dir):   #Cambia de direccipon si vas a chocar
 		print("!")
 		change_direction()
 
-func move_check(direction):
+func move_check(direction):  #Revisa si vas a chocar
 	
 	if up == true:
 		if get_node("RayCast2DUp").is_colliding():
@@ -42,10 +42,10 @@ func move_check(direction):
 		else:
 			return true
 
-func change_direction():
+func change_direction():   #Cambia dirección de forma random
 	var dir_index = randi() % 4
 	
-	if up == true:
+	if up == true:    #Deja e moverse en la dirección actual
 			up = false
 	elif down == true:
 			down = false
@@ -54,7 +54,7 @@ func change_direction():
 	elif right == true:
 			right = false
 	
-	match dir_index:
+	match dir_index:   #Intenta moverse en otra dirección
 		0:
 			up = true
 		1:

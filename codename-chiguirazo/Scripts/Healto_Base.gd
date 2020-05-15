@@ -10,7 +10,7 @@ const DEATH_TIMER = 0.2
 
 #Métodos
 
-func Die():
+func _Die():
 	#Desactivar hitbox
 	get_parent().get_node("Hittoboxu").set_deferred("disabled",true)
 	
@@ -23,12 +23,10 @@ func Die():
 	yield(get_tree().create_timer(DEATH_TIMER), "timeout")
 	get_parent().queue_free()
 	
-	print("Died succesfully")
-
 func Take_damage(damage):
 	
 	var new_helth = current_helth - damage
-	print("Daño inicial: " + str(damage))
+	print("En: Daño inicial: " + str(damage))
 	##Ajustes al daño
 	
 	if damage > 0: #Daño
@@ -46,10 +44,9 @@ func Take_damage(damage):
 	##ajuste de vida
 	
 	if damage == 0:
-		print("Nada que hacer.")
 		return
 	
 	current_helth -= damage
-	print("Vida: " + str(current_helth))
+	print("En: Vida: " + str(current_helth))
 	if current_helth <= 0:
-		Die()
+		_Die()

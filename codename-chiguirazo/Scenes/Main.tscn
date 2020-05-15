@@ -5,9 +5,21 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="LilWolf" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 90, 88 )
 
 [node name="Base_Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 408.059, 112.78 )
+speed = 0.0
+
+[node name="Base_Enemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 268.622, 217.358 )
+speed = 0.0
+
+[node name="Base_Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 92.2749, 278.874 )
+speed = 0.0
+
+[node name="Base_Enemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248.116, 299.38 )
 speed = 0.0
