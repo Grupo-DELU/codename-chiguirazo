@@ -13,7 +13,7 @@ func Enem_take_damage(damage):   #Para ducktyping xd
 func _process(delta):
 	
 	if !move_check(dir):   #Cambia de direccipon si vas a chocar
-		print("!")
+		#print("!")
 		change_direction()
 
 func move_check(direction):  #Revisa si vas a chocar

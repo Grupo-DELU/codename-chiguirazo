@@ -40,8 +40,8 @@ func add_xp(value):   #LLamada por un enemigo cuando muere (te da su xp)
 	
 	current_xp += value
 	
-	print(current_xp)
-	print(required_xp)
+	print("Current xp: " + str(current_xp))
+	print("Required xp: " + str(required_xp))
 	
 	while current_xp >= required_xp:   #Cheque si tienes suficiente xp para subir de nivel(varias veces)
 		
@@ -62,6 +62,6 @@ func _Level_up():
 	defense_change(Defense + level)
 	
 	print("Oshi")
-	print(current_xp)
-	print(required_xp)
+	print("Current xp: " + str(current_xp))
+	print("Required xp: " + str(required_xp))
 

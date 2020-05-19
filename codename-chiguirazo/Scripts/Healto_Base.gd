@@ -47,6 +47,9 @@ func Take_damage(damage):
 		return
 	
 	current_helth -= damage
-	print("En: Vida: " + str(current_helth))
+	if current_helth > 0:
+		print("En: Vida: " + str(current_helth))
 	if current_helth <= 0:
+		current_helth = 0
+		print("En: Vida: " + str(current_helth))
 		_Die()
