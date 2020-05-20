@@ -9,5 +9,5 @@ func _Die():    #Hace lo mismo que el base, además de dar exp al player
 	._Die()
 
 func send_xp():  #Da experiencia al player xd
-	print("Enviados +" + str(experience) + " de experiencia")
+	print("Enemigo muerto: Enviados +" + str(experience) + " de experiencia")
 	player.add_xp(experience)    

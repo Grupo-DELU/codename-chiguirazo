@@ -10,7 +10,6 @@ signal buff_finished
 func _Basic_attack(): #Slash (AOE)
 	can_attack = false
 	$Spawner.position = get_local_mouse_position().normalized()*slash_range
-	#$Spawner.rotation = $Spawner.position.angle()
 	var slash_i = Spawn_the(slash)
 	slash_i.damage = damage
 	._Basic_attack() #esto es una supercall, ejecuta la función como está declarada en la clase base

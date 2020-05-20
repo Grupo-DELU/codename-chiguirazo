@@ -20,7 +20,6 @@ func Spawn_the(object):
 	thing.position = $Spawner.get_global_position()
 	thing.z_index = -1
 	thing.rotation = get_local_mouse_position().angle()
-	print(rad2deg(thing.rotation))
 	main_scene.add_child(thing)
 	
 	return thing

@@ -26,7 +26,7 @@ func _Die():
 func Take_damage(damage):
 	
 	var new_helth = current_helth - damage
-	print("En: Daño inicial: " + str(damage))
+	print("Daño inicial recibido: " + str(damage))
 	##Ajustes al daño
 	
 	if damage > 0: #Daño
@@ -48,8 +48,8 @@ func Take_damage(damage):
 	
 	current_helth -= damage
 	if current_helth > 0:
-		print("En: Vida: " + str(current_helth))
+		print("Vida luego de recibir el ataque: " + str(current_helth))
 	if current_helth <= 0:
 		current_helth = 0
-		print("En: Vida: " + str(current_helth))
+		print("Vida luego de recibir el ataque: " + str(current_helth))
 		_Die()
