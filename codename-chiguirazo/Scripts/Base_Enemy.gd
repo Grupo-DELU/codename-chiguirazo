@@ -7,16 +7,16 @@ func _ready():
 	down = true
 	randomize()
 
-func Enem_take_damage(damage):   #Para ducktyping xd
+func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
 	$"Healto System".Take_damage(damage)
 
 func _process(delta):
 	
-	if !move_check(dir):   #Cambia de direccipon si vas a chocar
+	if !move_check():   #Cambia de direccipon si vas a chocar
 		#print("!")
 		change_direction()
 
-func move_check(direction):  #Revisa si vas a chocar
+func move_check():  #Revisa si vas a chocar
 	
 	if up == true:
 		if get_node("RayCast2DUp").is_colliding():
@@ -42,7 +42,7 @@ func move_check(direction):  #Revisa si vas a chocar
 		else:
 			return true
 
-func change_direction():   #Cambia dirección de forma random
+func change_direction() -> void:   #Cambia dirección de forma random
 	var dir_index = randi() % 4
 	
 	if up == true:    #Deja e moverse en la dirección actual

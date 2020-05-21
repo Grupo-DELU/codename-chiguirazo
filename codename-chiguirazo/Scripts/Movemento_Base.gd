@@ -16,12 +16,12 @@ var down = false
 
 #Setgets 
 
-func damage_change(new_damage):
+func damage_change(new_damage: float)-> void:
 	damage = new_damage
 	_update_stats()
 	print("Daño: " + str(damage))
 
-func defense_change(new_defense):
+func defense_change(new_defense: float)-> void:
 	Defense = new_defense
 	_update_stats()
 	print("Defensa: " + str(Defense))
@@ -29,24 +29,25 @@ func defense_change(new_defense):
 
 #Métodos de Movimiento
 
-func _update_stats():
+func _update_stats()-> void:
 	$"Attaku System".damage = damage
 	$"Healto System".Defense = Defense
 	
-func move_left():
+func move_left()-> void:
 	left = true
 
-func move_right():
+func move_right()-> void:
 	right = true
 	
-func move_up():
+func move_up()-> void:
 	up = true
 	
-func move_down():
+func move_down()-> void:
 	down = true
 
 func _physics_process(delta: float) -> void:
 	#Movimiento del Jugador
+	
 	dir = Vector2()
 	if right:
 		dir.x += 1
@@ -58,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		dir.y -= 1
 	if dir.length() > 0:
 		dir = dir.normalized() * speed
-		
+	
 	move_and_slide(dir)
 
 

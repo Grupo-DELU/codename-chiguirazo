@@ -2,7 +2,7 @@ extends Base_Player
 
 var buffed = false
 
-func _Level_up_call():
+func _Level_up_call()-> void:
 	
 	if buffed:
 		print("¿Quien necesita subir de nivel? ESTOY MAMADÍSIMO ÒwÓ")

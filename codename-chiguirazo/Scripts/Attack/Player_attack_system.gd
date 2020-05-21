@@ -15,10 +15,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("skill") and can_skill:
 		_Use_skill()
 
-func _Basic_attack():
+func _Basic_attack() -> void:
 	yield(get_tree().create_timer(atk_cooldown),"timeout")
 	can_attack = true
 
-func _Use_skill():
+func _Use_skill() -> void:
 	yield(get_tree().create_timer(skl_cooldown),"timeout")
 	can_skill = true

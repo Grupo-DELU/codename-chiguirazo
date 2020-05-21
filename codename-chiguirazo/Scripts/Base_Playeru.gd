@@ -11,7 +11,7 @@ func _ready():
 	_update_stats()
 
 #Movimiento
-func get_input():
+func get_input() -> void:
 	#Cuando se tiene que mover esta wea
 	if Input.is_action_pressed("right"):
 		move_right()
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 
 #Metodos de experiencia y niveles
 
-func add_xp(value):   #LLamada por un enemigo cuando muere (te da su xp)
+func add_xp(value: float) -> void:   #LLamada por un enemigo cuando muere (te da su xp)
 	
 	current_xp += value
 	
@@ -46,14 +46,14 @@ func add_xp(value):   #LLamada por un enemigo cuando muere (te da su xp)
 	_Level_up_call()
 	
 
-func _Level_up_call():
+func _Level_up_call() -> void:
 	while current_xp >= required_xp:   #Cheque si tienes suficiente xp para subir de nivel(varias veces)
 		
 		current_xp -= required_xp
 		required_xp *= 1.5
 		_Level_up()
 
-func _Level_up():
+func _Level_up() -> void:
 	
 	
 	level += 1

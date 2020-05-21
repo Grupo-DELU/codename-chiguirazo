@@ -8,6 +8,6 @@ func _Die():    #Hace lo mismo que el base, además de dar exp al player
 	send_xp()
 	._Die()
 
-func send_xp():  #Da experiencia al player xd
+func send_xp()-> void:  #Da experiencia al player xd
 	print("Enemigo muerto: Enviados +" + str(experience) + " de experiencia")
 	player.add_xp(experience)    
