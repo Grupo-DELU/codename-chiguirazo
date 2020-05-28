@@ -2,6 +2,14 @@ extends Movement_sys
 
 class_name Base_Enemy
 
+onready var player = get_node("res://Scenes/LilWolf.tscn")
+onready var steerings = preload("res://Scripts/steerings.gd").new()
+
+
+var state = "Wander"
+var player_is_in_range = false
+var player_position
+
 func _ready():
 	_update_stats()
 	down = true
@@ -15,6 +23,18 @@ func _process(delta):
 	if !move_check():   #Cambia de direccipon si vas a chocar
 		#print("!")
 		change_direction()
+		
+	match state:        #State Machine
+		"Attack":
+			if get_node("Attaku System").can_attack == true:
+				steerings.attacc()
+			else:
+				pass
+		"Wander":
+			steerings.wander()
+		"Flee":
+			steerings.flee()
+		
 
 func move_check():  #Revisa si vas a chocar
 	
@@ -63,3 +83,13 @@ func change_direction() -> void:   #Cambia dirección de forma random
 			left = true
 		3:
 			right = true
+			
+
+func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
+	player_is_in_range = true
+	player_position = body.get_global_position()
+	state = "Attack"
+
+
+func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
+	player_is_in_range = false
