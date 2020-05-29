@@ -14,13 +14,15 @@ var player_position = get_parent().player_position
 func Attack_check():
 	pass
 
-func Attack():
+func Attack(target: Vector2):
 	can_attack = false
 	speed = 0
 	#fire_direction = (get_angle_to(player_position)/3.14)*100
 	var bullet = preload("res://Scenes/Bullet.tscn")
 	var bullet_instance = bullet.instance()
-	bullet_instance.rotation = get_angle_to(player_position)
+	print(player_position)
+	print(get_angle_to(target))
+	bullet_instance.rotation = get_angle_to(target)
 	get_parent().add_child(bullet_instance)
 	yield(get_tree().create_timer(rate_of_fire), "timeout")
 	can_attack = true

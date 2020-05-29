@@ -11,7 +11,7 @@ var can_attack = true
 
 #Métodos:
 
-func Attack():
+func Attack(target: Vector2):
 	pass
 
 func Spawn_the(object):
