@@ -2,12 +2,12 @@ extends Movement_sys
 
 class_name Base_Enemy
 
-onready var player = get_node("res://Scenes/LilWolf.tscn")
 onready var steerings = preload("res://Scripts/steerings.gd").new()
 
+var player
 var state = "Wander"
 var player_is_in_range = false
-var player_position
+var just_spotted = false #Esto para correr la animacion de panico
 
 func _ready():
 	_update_stats()
@@ -25,10 +25,8 @@ func _process(delta):
 		
 	match state:        #State Machine
 		"Attack":
-			if get_node("Attaku System").can_attack == true:
-				steerings.attacc(player_position, self)
-			else:
-				pass
+			steerings.attacc(self)
+			just_spotted = false
 		"Wander":
 			steerings.wander()
 		"Flee":
@@ -85,12 +83,15 @@ func change_direction() -> void:   #Cambia dirección de forma random
 			
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
+	just_spotted = true
 	player_is_in_range = true
-	player_position = body.get_global_position()
-	print(player_position)
+	player = body
 	state = "Attack"
 
 
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
 	player_is_in_range = false
 	state = "Wander"
+
+func get_player_pos():
+	pass
