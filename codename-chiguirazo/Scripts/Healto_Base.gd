@@ -34,6 +34,12 @@ func Take_damage(damage: float) -> void:
 		damage -= Defense
 		#Daño no puede pasar a negativo de este modo
 		damage = max(0, damage)
+		
+		##DEBUG/EFECTOS VISUALES
+		print(get_parent().get_children())
+		$"../Supuraitu".modulate = Color(0.91, 0.59, 0.48, 1)
+		yield(get_tree().create_timer(0.2),"timeout")
+		$"../Supuraitu".modulate = Color(1, 1, 1, 1)
 	
 	else:            #Curación
 		if new_helth > Max_Helth:  #no curar por encima de la vida maxima
@@ -43,7 +49,10 @@ func Take_damage(damage: float) -> void:
 		damage = - (min(Max_Helth,new_helth) - current_helth)
 		             #El daño será suficiente para llegar a uno de estos 2 parámetros
 					#Se le resta current_health para que esté en base a 0, y se le cambia el signo para que pase a ser una curación
-	##VFX##
+		##DEBUG/VFX
+		$"../Supuraitu".modulate = Color(0.56, 0.93, 0.56, 1 )
+		yield(get_tree().create_timer(0.2),"timeout")
+		$"../Supuraitu".modulate = Color(1, 1, 1, 1)
 	
 	##ajuste de vida
 	

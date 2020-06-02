@@ -12,8 +12,10 @@ func _Basic_attack(): #Slash (AOE)
 	$Spawner.position = get_local_mouse_position().normalized()*slash_range
 	var slash_i = Spawn_the(slash)
 	slash_i.damage = damage
-	
-	main_scene.add_child(slash_i)
+	slash_i.position -= get_global_position()
+	slash_i.rotation = get_local_mouse_position().angle()
+	#main_scene.
+	add_child(slash_i)
 	
 	._Basic_attack() #esto es una supercall, ejecuta la función como está declarada en la clase base
 	
