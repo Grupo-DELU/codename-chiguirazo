@@ -68,9 +68,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Chiguirazo-o"
+config/name="Chiwiraso"
 run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://Lobitowo.png"
+config/icon="res://jdaeghh.png"
 
 [input]
 
