@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Attack/B_bullet.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -18,7 +18,7 @@ rotation = 1.5708
 scale = Vector2( 0.218754, 0.482255 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 2.01351e-020, -2.01345e-020 )
 rotation = 1.5708
 shape = SubResource( 1 )

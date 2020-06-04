@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Attack/Wolf_Area.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Attack/WA_wolf_area.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 50 )
@@ -12,4 +12,4 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-[connection signal="body_entered" from="." to="." method="_Hurt"]
+[connection signal="body_entered" from="." to="." method="Hurt"]

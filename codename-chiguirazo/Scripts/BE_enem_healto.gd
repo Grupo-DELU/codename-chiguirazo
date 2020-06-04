@@ -1,12 +1,12 @@
-extends Health_sys
+extends healto_base
 
 onready var player = get_node("/root/Main/Player")
 
 var experience = 18  #experiencia que da al murir
 
-func _Die():    #Hace lo mismo que el base, además de dar exp al player
+func Die():    #Hace lo mismo que el base, además de dar exp al player
 	send_xp()
-	._Die()
+	.Die()
 
 func send_xp()-> void:  #Da experiencia al player xd
 	print("Enemigo muerto: Enviados +" + str(experience) + " de experiencia")

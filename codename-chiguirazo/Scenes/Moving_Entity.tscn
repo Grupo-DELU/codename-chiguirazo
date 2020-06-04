@@ -5,13 +5,13 @@ extents = Vector2( 20, 30 )
 
 [node name="Moving Entity" type="KinematicBody2D"]
 
-[node name="Healto System" type="Node2D" parent="."]
+[node name="Health" type="Node2D" parent="."]
 
-[node name="Attaku System" type="Node2D" parent="."]
+[node name="Attack" type="Node2D" parent="."]
 
-[node name="Spawner" type="Position2D" parent="Attaku System"]
+[node name="Spawner" type="Position2D" parent="Attack"]
 
-[node name="Movemento System" type="Node2D" parent="."]
+[node name="Movement" type="Node2D" parent="."]
 
 [node name="Hittoboxu" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

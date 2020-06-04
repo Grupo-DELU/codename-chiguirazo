@@ -1,16 +1,16 @@
 extends Node2D
 
-class_name Health_sys
+class_name healto_base
 #Atributos
-export(float) var Max_Helth = 6
-var current_helth = Max_Helth
-var Defense
+export(float) var m_helth = 6
+var c_helth = m_helth
+var defense
 
-const DEATH_TIMER = 0.2
+const D_TIMER = 0.2
 
 #Métodos
 
-func _Die()-> void:
+func Die()-> void:
 	#Desactivar hitbox
 	get_parent().get_node("Hittoboxu").set_deferred("disabled",true)
 	
@@ -20,18 +20,18 @@ func _Die()-> void:
 	
 	#Sea expulsado al limbo de las bestias
 	
-	yield(get_tree().create_timer(DEATH_TIMER), "timeout")
+	yield(get_tree().create_timer(D_TIMER), "timeout")
 	get_parent().queue_free()
 	
 func Take_damage(damage: float) -> void:
 	
-	var new_helth = current_helth - damage
+	var new_helth = c_helth - damage
 	print("Daño inicial recibido: " + str(damage))
 	##Ajustes al daño
 	
 	if damage > 0: #Daño
 		#Tomar en cuenta la defensa
-		damage -= Defense
+		damage -= defense
 		#Daño no puede pasar a negativo de este modo
 		damage = max(0, damage)
 		
@@ -42,11 +42,11 @@ func Take_damage(damage: float) -> void:
 		$"../Supuraitu".modulate = Color(1, 1, 1, 1)
 	
 	else:            #Curación
-		if new_helth > Max_Helth:  #no curar por encima de la vida maxima
-			damage = - (Max_Helth - current_helth)
+		if new_helth > m_helth:  #no curar por encima de la vida maxima
+			damage = - (m_helth - c_helth)
 		
-		# La curación no debe sr suficiene para pasarse de Max_Helth
-		damage = - (min(Max_Helth,new_helth) - current_helth)
+		# La curación no debe sr suficiene para pasarse de m_helth
+		damage = - (min(m_helth,new_helth) - c_helth)
 		             #El daño será suficiente para llegar a uno de estos 2 parámetros
 					#Se le resta current_health para que esté en base a 0, y se le cambia el signo para que pase a ser una curación
 		##DEBUG/VFX
@@ -59,10 +59,10 @@ func Take_damage(damage: float) -> void:
 	if damage == 0:
 		return
 	
-	current_helth -= damage
-	if current_helth > 0:
-		print("Vida luego de recibir el ataque: " + str(current_helth))
-	if current_helth <= 0:
-		current_helth = 0
-		print("Vida luego de recibir el ataque: " + str(current_helth))
-		_Die()
+	c_helth -= damage
+	if c_helth > 0:
+		print("Vida luego de recibir el ataque: " + str(c_helth))
+	if c_helth <= 0:
+		c_helth = 0
+		print("Vida luego de recibir el ataque: " + str(c_helth))
+		Die()

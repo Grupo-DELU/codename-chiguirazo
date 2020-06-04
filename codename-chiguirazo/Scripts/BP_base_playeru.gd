@@ -1,14 +1,14 @@
-extends Movement_sys
+extends movemento_base
 
-class_name Base_Player
+class_name base_playeru
 
 #Atributos de xperiencia y niveles
 var level = 1
-var current_xp = 0
-var required_xp = 5
+var xp_current = 0
+var xp_required = 5
 
 func _ready():
-	_update_stats()
+	update_stats()
 
 #Movimiento
 func get_input() -> void:
@@ -38,22 +38,22 @@ func _process(delta: float) -> void:
 
 func add_xp(value: float) -> void:   #LLamada por un enemigo cuando muere (te da su xp)
 	
-	current_xp += value
+	xp_current += value
 	
-	print("Player Current xp: " + str(current_xp))
-	print("Player Required xp: " + str(required_xp))
+	print("Player Current xp: " + str(xp_current))
+	print("Player Required xp: " + str(xp_required))
 	
-	_Level_up_call()
+	Level_up_call()
 	
 
-func _Level_up_call() -> void:
-	while current_xp >= required_xp:   #Cheque si tienes suficiente xp para subir de nivel(varias veces)
+func Level_up_call() -> void:
+	while xp_current >= xp_required:   #Cheque si tienes suficiente xp para subir de nivel(varias veces)
 		
-		current_xp -= required_xp
-		required_xp *= 1.5
-		_Level_up()
+		xp_current -= xp_required
+		xp_required *= 1.5
+		Level_up()
 
-func _Level_up() -> void:
+func Level_up() -> void:
 	
 	
 	level += 1
@@ -61,9 +61,9 @@ func _Level_up() -> void:
 	   #Cada nivel requiere de mas xp para subir al siguiente
 	
 	speed += 25*level             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
-	damage_change(damage + level)
-	defense_change(Defense + level)
+	Damage_change(damage + level)
+	Defense_change(defense + level)
 	
-	print("Player Current xp: " + str(current_xp))
-	print("Player Required xp: " + str(required_xp))
+	print("Player Current xp: " + str(xp_current))
+	print("Player Required xp: " + str(xp_required))
 

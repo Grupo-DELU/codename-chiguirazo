@@ -1,39 +1,39 @@
-extends Movement_sys
+extends movemento_base
 
-class_name Base_Enemy
+class_name base_Enemy
 
-onready var steerings = preload("res://Scripts/steerings.gd").new()
+onready var steerings = preload("res://Scripts/S_steerings.gd").new()
 
-var player
-var state = "Wander"
-var player_is_in_range = false
-var just_spotted = false #Esto para correr la animacion de panico
+var player  #Holds player node
+var state = "Wander" #Estado actual pal' cerebro
+var p_range = false  #Chequea si el jugadoor esta dentro del rango
+var j_spotted = false #Esto para correr la animacion de panico
 
 func _ready():
-	_update_stats()
+	update_stats()
 	down = true
 	randomize()
 
 func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
-	$"Healto System".Take_damage(damage)
+	$"Health".Take_damage(damage)
 
 func _process(delta):
 	
-	if !move_check():   #Cambia de direccipon si vas a chocar
+	if !Move_check():   #Cambia de direccipon si vas a chocar
 		#print("!")
-		change_direction()
+		Change_diretion()
 		
 	match state:        #State Machine
 		"Attack":
-			steerings.attacc(self)
-			just_spotted = false
+			steerings.Attacc(self)
+			j_spotted = false
 		"Wander":
-			steerings.wander()
+			steerings.Wander()
 		"Flee":
-			steerings.flee()
+			steerings.Flee()
 		
 
-func move_check():  #Revisa si vas a chocar
+func Move_check():  #Revisa si vas a chocar
 	
 	if up == true:
 		if get_node("RayCast2DUp").is_colliding():
@@ -59,8 +59,8 @@ func move_check():  #Revisa si vas a chocar
 		else:
 			return true
 
-func change_direction() -> void:   #Cambia dirección de forma random
-	var dir_index = randi() % 4
+func Change_diretion() -> void:   #Cambia dirección de forma random
+	var d_index = randi() % 4
 	
 	if up == true:    #Deja e moverse en la dirección actual
 			up = false
@@ -71,7 +71,7 @@ func change_direction() -> void:   #Cambia dirección de forma random
 	elif right == true:
 			right = false
 	
-	match dir_index:   #Intenta moverse en otra dirección
+	match d_index:   #Intenta moverse en otra dirección
 		0:
 			up = true
 		1:
@@ -83,15 +83,15 @@ func change_direction() -> void:   #Cambia dirección de forma random
 			
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
-	just_spotted = true
-	player_is_in_range = true
+	j_spotted = true
+	p_range = true
 	player = body
 	state = "Attack"
 
 
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
-	player_is_in_range = false
+	p_range = false
 	state = "Wander"
 
-func get_player_pos():
+func Get_player_pos():
 	pass

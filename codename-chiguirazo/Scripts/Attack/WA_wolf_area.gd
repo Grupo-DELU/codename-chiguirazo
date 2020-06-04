@@ -6,7 +6,7 @@ var damage
 func _ready():
 	despawn()
 
-func _Hurt(body: Node2D) -> void:  #respuest a señal cuando el Area2D detecta cuerpos
+func Hurt(body: Node2D) -> void:  #respuest a señal cuando el Area2D detecta cuerpos
 	for entity in get_overlapping_bodies():
 		if entity.has_method("Enem_take_damage"):
 			entity.Enem_take_damage(damage)

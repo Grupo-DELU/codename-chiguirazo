@@ -2,7 +2,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Base_bullet" type="KinematicBody2D"]
+[node name="Bullet" type="KinematicBody2D"]
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

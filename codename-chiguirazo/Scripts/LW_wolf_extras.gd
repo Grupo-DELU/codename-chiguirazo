@@ -1,12 +1,12 @@
-extends Base_Player
+extends base_playeru
 
 var buffed = false
 
-func _Level_up_call()-> void:
+func Level_up_call()-> void:
 	
 	if buffed:
 		print("¿Quien necesita subir de nivel? ESTOY MAMADÍSIMO ÒwÓ")
-		yield($"Attaku System", "buff_finished") #Espera a que el buff termine para continuar
+		yield($"Attack", "b_finished") #Espera a que el buff termine para continuar
 		print("E-está bien, ahora si subiré de nivel UwU")
 	
-	._Level_up_call()
+	.Level_up_call()
