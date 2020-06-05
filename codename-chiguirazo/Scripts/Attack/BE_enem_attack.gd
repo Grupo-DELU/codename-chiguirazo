@@ -3,9 +3,7 @@ extends attaku_base
 class_name enem_attack
 
 #Atributos
-var speed = get_parent().speed
-
-var a_direction   #Dirección del ataque
+var speed :float = get_parent().speed
 
 #Métodos
 func Attack_check(): #Chequea si puede atacar

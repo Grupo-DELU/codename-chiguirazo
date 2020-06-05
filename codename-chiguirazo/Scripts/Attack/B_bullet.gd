@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-var p_speed = 400  #Velocidad del proyetil
-var damage 			#Daño del proyectil
+var p_speed :float = 400.0  #Velocidad del proyetil
+var damage : float			#Daño del proyectil
 
 
 func _ready() -> void:

@@ -1,8 +1,8 @@
 extends healto_base
 
-onready var player = get_node("/root/Main/Player")
+onready var player : Node2D = get_node("/root/Main/Player")
 
-var experience = 18  #experiencia que da al murir
+var experience : float = 18  #experiencia que da al murir
 
 func Die():    #Hace lo mismo que el base, además de dar exp al player
 	send_xp()

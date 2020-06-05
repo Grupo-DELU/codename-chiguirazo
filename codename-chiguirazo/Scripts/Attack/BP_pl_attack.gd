@@ -4,8 +4,8 @@ class_name pl_attack
 
 #Atributos
 
-var c_skill = true  #Check de la capacidad para usar la skill del personaje
-export(float) var s_cooldown = 2 #Tiemppo minimo entre usos de skills
+var c_skill :bool = true  #Check de la capacidad para usar la skill del personaje
+export(float) var s_cooldown :float= 2 #Tiemppo minimo entre usos de skills
 #Metodos
 
 

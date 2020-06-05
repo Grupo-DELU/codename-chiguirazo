@@ -2,11 +2,11 @@ extends Node2D
 
 class_name healto_base
 #Atributos
-export(float) var m_helth = 6
-var c_helth = m_helth
-var defense
+export(float) var max_health : float= 6.0
+var current_helth :float = max_health
+var defense : float
 
-const D_TIMER = 0.2
+const D_TIMER :float = 0.2
 
 #Métodos
 
@@ -25,7 +25,7 @@ func Die()-> void:
 	
 func Take_damage(damage: float) -> void:
 	
-	var new_helth = c_helth - damage
+	var new_helth = current_helth - damage
 	print("Daño inicial recibido: " + str(damage))
 	##Ajustes al daño
 	
@@ -42,11 +42,11 @@ func Take_damage(damage: float) -> void:
 		$"../Supuraitu".modulate = Color(1, 1, 1, 1)
 	
 	else:            #Curación
-		if new_helth > m_helth:  #no curar por encima de la vida maxima
-			damage = - (m_helth - c_helth)
+		if new_helth > max_health:  #no curar por encima de la vida maxima
+			damage = - (max_health - current_helth)
 		
-		# La curación no debe sr suficiene para pasarse de m_helth
-		damage = - (min(m_helth,new_helth) - c_helth)
+		# La curación no debe sr suficiene para pasarse de max_health
+		damage = - (min(max_health,new_helth) - current_helth)
 		             #El daño será suficiente para llegar a uno de estos 2 parámetros
 					#Se le resta current_health para que esté en base a 0, y se le cambia el signo para que pase a ser una curación
 		##DEBUG/VFX
@@ -59,10 +59,10 @@ func Take_damage(damage: float) -> void:
 	if damage == 0:
 		return
 	
-	c_helth -= damage
-	if c_helth > 0:
-		print("Vida luego de recibir el ataque: " + str(c_helth))
-	if c_helth <= 0:
-		c_helth = 0
-		print("Vida luego de recibir el ataque: " + str(c_helth))
+	current_helth -= damage
+	if current_helth > 0:
+		print("Vida luego de recibir el ataque: " + str(current_helth))
+	if current_helth <= 0:
+		current_helth = 0
+		print("Vida luego de recibir el ataque: " + str(current_helth))
 		Die()

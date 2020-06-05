@@ -1,6 +1,6 @@
 extends base_playeru
 
-var buffed = false
+var buffed : bool= false
 
 func Level_up_call()-> void:
 	

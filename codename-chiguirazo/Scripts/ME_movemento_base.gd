@@ -3,16 +3,16 @@ extends KinematicBody2D
 class_name movemento_base
 
 #Variables manejadas en nodos hijos 
-export(float) var damage = 2 setget Damage_change
-export(float) var defense = 1 setget Defense_change
+export(float) var damage :float = 2.0 setget Damage_change
+export(float) var defense:float = 1.0 setget Defense_change
 
 #Atributos de Movimiento
-export(float) var speed = 300 
-var dir =  Vector2()
-var right = false
-var left = false
-var up = false
-var down = false
+export(float) var speed :float = 300.0
+var dir :Vector2=  Vector2()
+var right :bool = false
+var left :bool = false
+var up :bool = false
+var down :bool = false
 
 #Setgets 
 

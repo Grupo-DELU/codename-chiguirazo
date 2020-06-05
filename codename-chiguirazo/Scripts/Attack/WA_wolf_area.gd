@@ -1,7 +1,7 @@
 extends Area2D
 
-export(float) var lifetime = 0.2
-var damage
+export(float) var lifetime : float = 0.2
+var damage: float
 
 func _ready():
 	despawn()

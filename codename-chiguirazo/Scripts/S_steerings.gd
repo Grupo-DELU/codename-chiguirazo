@@ -3,16 +3,16 @@ extends KinematicBody2D
 const T_ANIMATION = 5  #Timepo que dura una animación...
 
 onready var a_system = get_parent().get_node("Attack")
-var p_position 
-var s_time = 5  #Seeking_time
-var t_start = false #Start_the_timer
-var t_seeking = true #Its_seeking_time
+var p_position : Vector2
+var s_time :float = 5.0  #Seeking_time
+var t_start :bool = false #Start_the_timer
+var t_seeking :bool = true #Its_seeking_time
 
 func _process(delta: float) -> void:
 	pass
 
 
-func Attacc(enemy):
+func Attacc(enemy :Node2D) -> void:
 	#esperarqueterminelaanimaciondealerta#
 	if enemy.j_spotted == true:
 		print("pAnIc")
@@ -30,10 +30,10 @@ func Attacc(enemy):
 			p_position = enemy.player.get_global_position()
 			enemy.get_node("Attack").Attack(p_position)
 
-func Wander():
+func Wander(enemy :Node2D) -> void:
 	pass
 	
-func Flee():
+func Flee(enemy :Node2D) ->void:
 	pass
 	
 	

@@ -3,9 +3,9 @@ extends movemento_base
 class_name base_playeru
 
 #Atributos de xperiencia y niveles
-var level = 1
-var xp_current = 0
-var xp_required = 5
+var level : int = 1
+var xp_current :float = 0.0
+var xp_required :float = 5.0
 
 func _ready():
 	update_stats()

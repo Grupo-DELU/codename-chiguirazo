@@ -4,10 +4,14 @@ class_name base_Enemy
 
 onready var steerings = preload("res://Scripts/S_steerings.gd").new()
 
-var player  #Holds player node
-var state = "Wander" #Estado actual pal' cerebro
-var p_range = false  #Chequea si el jugadoor esta dentro del rango
-var j_spotted = false #Esto para correr la animacion de panico
+var player : Node2D  #Holds player node
+var player_in_range :bool = false  #Chequea si el jugadoor esta dentro del rango
+var j_spotted : bool = false #Esto para correr la animacion de panico
+
+enum States{
+	Wander, Attack , Flee
+	} 
+var state : int = States.Wander #Estado actual pal' cerebro
 
 func _ready():
 	update_stats()
@@ -24,13 +28,13 @@ func _process(delta):
 		Change_diretion()
 		
 	match state:        #State Machine
-		"Attack":
+		States.Attack:
 			steerings.Attacc(self)
 			j_spotted = false
-		"Wander":
-			steerings.Wander()
-		"Flee":
-			steerings.Flee()
+		States.Wander:
+			steerings.Wander(self)
+		States.Flee:
+			steerings.Flee(self)
 		
 
 func Move_check():  #Revisa si vas a chocar
@@ -84,14 +88,14 @@ func Change_diretion() -> void:   #Cambia dirección de forma random
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 	j_spotted = true
-	p_range = true
+	player_in_range = true
 	player = body
-	state = "Attack"
+	state = States.Attack
 
 
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
-	p_range = false
-	state = "Wander"
+	player_in_range = false
+	state = States.Wander
 
 func Get_player_pos():
 	pass

@@ -1,13 +1,13 @@
 extends pl_attack
 
-var slash = preload("res://Scenes/Wolf_Attack.tscn") #ataque del lobo
-var m_buff = 1.5 #Fuerza del buff (skill)
-var b_duration = 5  #duración del buff
-var s_range = 50 #rango del salsh (ataque) del lobo
+var slash :PackedScene = preload("res://Scenes/Wolf_Attack.tscn") #ataque del lobo
+var m_buff : float= 1.5 #Fuerza del buff (skill)
+var b_duration :float= 5.0  #duración del buff
+var s_range :float= 50.0 #rango del salsh (ataque) del lobo
 
 signal b_finished
 
-func Basic_attack(): #Slash (AOE)
+func Basic_attack() -> void: #Slash (AOE)
 	c_attack = false
 	$Spawner.position = get_local_mouse_position().normalized()*s_range
 	var i_slash = Spawn(slash)
@@ -19,7 +19,7 @@ func Basic_attack(): #Slash (AOE)
 	
 	.Basic_attack() #esto es una supercall, ejecuta la función como está declarada en la clase base
 	
-func Use_skill(): #L1: BUFF
+func Use_skill() -> void: #L1: BUFF
 	c_skill = false
 	
 	var wolfie = get_parent()   #La skill es un buff a estas 3 stats
