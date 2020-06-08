@@ -67,3 +67,5 @@ func Level_up() -> void:
 	print("Player Current xp: " + str(xp_current))
 	print("Player Required xp: " + str(xp_required))
 
+func Player_take_damage(damage :float) ->void:   #Para ducktyping xd
+	$"Health".Take_damage(damage)

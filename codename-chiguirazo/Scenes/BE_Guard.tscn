@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/BE_enem_healto.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Attack/BE_enem_attack.gd" type="Script" id=4]
 
-[node name="Enemy" instance=ExtResource( 1 )]
+[node name="Enemy" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Health" parent="." index="0"]
@@ -13,3 +13,4 @@ script = ExtResource( 3 )
 
 [node name="Attack" parent="." index="1"]
 script = ExtResource( 4 )
+a_cooldown = 0.8
