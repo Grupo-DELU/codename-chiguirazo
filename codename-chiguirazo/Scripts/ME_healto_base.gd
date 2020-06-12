@@ -24,7 +24,6 @@ func Die()-> void:
 	get_parent().queue_free()
 	
 func Take_damage(damage: float) -> void:
-	
 	var new_helth = current_helth - damage
 	print("Daño inicial recibido: " + str(damage))
 	##Ajustes al daño
@@ -59,10 +58,13 @@ func Take_damage(damage: float) -> void:
 	if damage == 0:
 		return
 	
-	current_helth -= damage
-	if current_helth > 0:
-		print("Vida luego de recibir el ataque: " + str(current_helth))
+	current_helth -= damage 
+	Emit_health_signal(current_helth)
+		
 	if current_helth <= 0:
 		current_helth = 0
-		print("Vida luego de recibir el ataque: " + str(current_helth))
 		Die()
+	print("Vida luego de recibir el ataque: " + str(current_helth))
+
+func Emit_health_signal(new_helth):
+	$"..".emit_signal("health_updated",new_helth)

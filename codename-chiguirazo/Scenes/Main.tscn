@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/BP_Lil_Wolf.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/BE_Guard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/BE_Guard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/BP_Lil_Wolfcopy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 310 )
@@ -10,9 +10,6 @@ extents = Vector2( 20, 310 )
 extents = Vector2( 530, 20 )
 
 [node name="Main" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 68.6842, 73.7895 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -40,7 +37,7 @@ position = Vector2( 510, -20 )
 shape = SubResource( 2 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( -10, 640 )
+position = Vector2( 10.5487, 396.84 )
 collision_layer = 16
 collision_mask = 15
 __meta__ = {
@@ -51,6 +48,8 @@ __meta__ = {
 position = Vector2( 510, -20 )
 shape = SubResource( 2 )
 
-[node name="Enemy" parent="." instance=ExtResource( 2 )]
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 268.621, 139.437 )
-speed = 0.0
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 82.1949, 71.9205 )

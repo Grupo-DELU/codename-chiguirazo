@@ -5,6 +5,8 @@ var m_buff : float= 1.5 #Fuerza del buff (skill)
 var b_duration :float= 5.0  #duración del buff
 var s_range :float= 50.0 #rango del salsh (ataque) del lobo
 
+onready var Buff_duration = $"BDuration"
+
 signal b_finished
 
 func Basic_attack() -> void: #Slash (AOE)
@@ -27,12 +29,19 @@ func Use_skill() -> void: #L1: BUFF
 	wolfie.damage *= m_buff
 	wolfie.speed *= m_buff
 	wolfie.defense *= m_buff
+	Buff_duration.start()
 	
-	yield(get_tree().create_timer(b_duration),"timeout")  #El buff es temporal (se deshace luegode un tiempo)
+	Buff_duration.start()
+	yield(Buff_duration,"timeout")  #El buff es temporal (se deshace luegode un tiempo)
+	
 	wolfie.damage /= m_buff
 	wolfie.speed /= m_buff
 	wolfie.defense /= m_buff
 	emit_signal("b_finished")
 	wolfie.buffed = false
-	
+	Timer
 	.Use_skill()  # espera al cooldown para poder usar la skill de nuevo
+
+ 
+func _on_BDuration_timeout():
+	pass # Replace with function body.

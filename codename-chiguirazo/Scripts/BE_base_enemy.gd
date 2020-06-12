@@ -24,7 +24,7 @@ func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
 func _process(delta):
 	
 	if !Move_check():   #Cambia de direccipon si vas a chocar
-		#print("!")
+		print("!")
 		Change_diretion()
 		
 	match state:        #State Machine
@@ -47,6 +47,7 @@ func Move_check():  #Revisa si vas a chocar
 		
 	elif down == true:
 		if get_node("RayCast2DDown").is_colliding():
+			print("ouch")
 			return
 		else:
 			return true
@@ -99,3 +100,5 @@ func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
 
 func Get_player_pos():
 	pass
+
+

@@ -2,6 +2,9 @@ extends movemento_base
 
 class_name base_playeru
 
+##Atributos para los sliders (estos se usan en nodos hijos)
+export(float) var skill_cooldown :float= 2 #Tiemppo minimo entre usos de skills (Attack)
+
 #Atributos de xperiencia y niveles
 var level : int = 1
 var xp_current :float = 0.0
@@ -9,6 +12,10 @@ var xp_required :float = 5.0
 
 func _ready():
 	update_stats()
+
+func update_stats():
+	.update_stats()
+	Attack.get_node("STimer").wait_time = skill_cooldown
 
 #Movimiento
 func get_input() -> void:

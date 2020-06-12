@@ -2,9 +2,14 @@ extends KinematicBody2D
 
 class_name movemento_base
 
+#Referencias a nodos hijos
+onready var Attack = $"Attack"
+onready var Health = $"Health"
+
 #Variables manejadas en nodos hijos 
 export(float) var damage :float = 2.0 setget Damage_change
 export(float) var defense:float = 1.0 setget Defense_change
+export(float) var attack_cooldown = 1
 
 #Atributos de Movimiento
 export(float) var speed :float = 300.0
@@ -13,6 +18,10 @@ var right :bool = false
 var left :bool = false
 var up :bool = false
 var down :bool = false
+
+#señales
+signal health_updated(new_health) #Llamada desde Health
+
 
 #Setgets 
 
@@ -30,8 +39,9 @@ func Defense_change(new_defense: float)-> void:
 #Métodos de Movimiento
 
 func update_stats()-> void:
-	$"Attack".damage = damage
-	$"Health".defense = defense
+	Attack.damage = damage
+	Attack.get_node("ATimer").wait_time = attack_cooldown
+	Health.defense = defense
 	
 func move_left()-> void:
 	left = true

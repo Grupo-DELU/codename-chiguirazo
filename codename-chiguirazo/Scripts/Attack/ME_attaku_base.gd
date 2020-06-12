@@ -6,7 +6,7 @@ onready var m_scene :Node2D = get_node("/root/Main")
 
 ##Atributos##
 var damage :float  #Daño que hacen los ataques
-export(float) var a_cooldown :float= 0.5  #Tiempo minimo entre ataques
+onready var Attack_timer = $"ATimer"  #Tiempo minimo entre ataques
 var c_attack :bool= true  #Check para saber si se puede atacar
 
 ##Métodos#
@@ -22,4 +22,7 @@ func Spawn(object : PackedScene) -> Node2D:
 	thing.z_index = -1
 	
 	return thing
+
+func _on_ATimer_timeout():
+	c_attack = true
 	
