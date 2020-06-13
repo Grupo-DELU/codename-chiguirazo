@@ -5,7 +5,7 @@ class_name attaku_base
 onready var m_scene :Node2D = get_node("/root/Main")
 
 ##Atributos##
-var damage :float  #Daño que hacen los ataques
+var damage :float = 1 #Daño que hacen los ataques
 onready var Attack_timer = $"ATimer"  #Tiempo minimo entre ataques
 var c_attack :bool= true  #Check para saber si se puede atacar
 

@@ -3,6 +3,7 @@ extends movemento_base
 class_name base_Enemy
 
 onready var steerings = preload("res://Scripts/S_steerings.gd").new()
+onready var whiskers = $"Whiskers"
 
 var player : Node2D  #Holds player node
 var player_in_range :bool = false  #Chequea si el jugadoor esta dentro del rango
@@ -15,7 +16,7 @@ var state : int = States.Wander #Estado actual pal' cerebro
 
 func _ready():
 	update_stats()
-	down = true
+	right = true
 	randomize()
 
 func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
@@ -24,7 +25,7 @@ func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
 func _process(delta):
 	
 	if !Move_check():   #Cambia de direccipon si vas a chocar
-		print("!")
+
 		Change_diretion()
 		
 	match state:        #State Machine
@@ -37,32 +38,13 @@ func _process(delta):
 			steerings.Flee(self)
 		
 
-func Move_check():  #Revisa si vas a chocar
+func Move_check() -> bool:  #Revisa si vas a chocar
 	
-	if up == true:
-		if get_node("RayCast2DUp").is_colliding():
-			return
-		else:
-			return true
-		
-	elif down == true:
-		if get_node("RayCast2DDown").is_colliding():
-			print("ouch")
-			return
-		else:
-			return true
-		
-	elif left == true:
-		if get_node("RayCast2DLeft").is_colliding():
-			return
-		else:
-			return true
-		
-	elif right == true:
-		if get_node("RayCast2DRight").is_colliding():
-			return
-		else:
-			return true
+	for w in whiskers.get_children():
+		if w.is_colliding():
+			return false
+	return true
+	RayCast2D
 
 func Change_diretion() -> void:   #Cambia dirección de forma random
 	var d_index = randi() % 4
@@ -79,13 +61,32 @@ func Change_diretion() -> void:   #Cambia dirección de forma random
 	match d_index:   #Intenta moverse en otra dirección
 		0:
 			up = true
+			
 		1:
 			down = true
+			
 		2:
 			left = true
+			
 		3:
 			right = true
 			
+		
+	Rotate_whiskers()
+
+func Rotate_whiskers() -> void:
+	var dir_vector = {up: Vector2.UP,down: Vector2.DOWN,left: Vector2.LEFT, right:Vector2.RIGHT}
+	var actual_dir
+	var c = 0
+	
+	for dir in [up,down,left,right]:
+		if dir == true:
+			actual_dir = dir_vector[dir]
+			break
+			
+	whiskers.rotation = actual_dir.angle()
+
+
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 	j_spotted = true

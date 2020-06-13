@@ -17,10 +17,11 @@ func Attack(target: Vector2):
 	speed = 0
 	#fire_direction = (get_angle_to(player_position)/3.14)*100
 	var i_bullet = Spawn(bullet)
-	i_bullet.position -= get_global_position()
-	i_bullet.rotation = get_angle_to(target)
+	i_bullet.position = get_global_position()
+	i_bullet.rotation += get_angle_to(target)
 	i_bullet.damage = damage
-	get_parent().add_child(i_bullet)
+	i_bullet.p_speed = 200.0
+	m_scene.add_child(i_bullet)
 	
 	##This might be a function later##
 	Attack_timer.start()

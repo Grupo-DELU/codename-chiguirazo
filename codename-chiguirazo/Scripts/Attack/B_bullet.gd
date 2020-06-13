@@ -1,6 +1,6 @@
 extends Area2D
 
-var p_speed: int = 400  #Velocidad del proyetil
+var p_speed: float = 400  #Velocidad del proyetil
 var damage: float 			#Daño del proyectil
 
 func _process(delta: float) -> void:
