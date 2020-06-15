@@ -1,4 +1,4 @@
-extends movemento_base
+extends movemento_base2
 
 class_name base_Enemy
 
@@ -8,6 +8,7 @@ onready var whiskers = $"Whiskers"
 var player : Node2D  #Holds player node
 var player_in_range :bool = false  #Chequea si el jugadoor esta dentro del rango
 var j_spotted : bool = false #Esto para correr la animacion de panico
+var current_direction: int
 
 enum States{
 	Wander, Attack , Flee
@@ -28,6 +29,9 @@ func _process(delta):
 
 		Change_diretion()
 		
+	#if $"Health".current_helth < 2:
+		#state = States.Flee
+	
 	match state:        #State Machine
 		States.Attack:
 			steerings.Attacc(self)
@@ -61,18 +65,19 @@ func Change_diretion() -> void:   #Cambia dirección de forma random
 	match d_index:   #Intenta moverse en otra dirección
 		0:
 			up = true
-			
+			current_direction = 0
 		1:
 			down = true
-			
+			current_direction = 1
 		2:
 			left = true
-			
+			current_direction = 2
 		3:
 			right = true
-			
+			current_direction = 3
 		
 	Rotate_whiskers()
+	
 
 func Rotate_whiskers() -> void:
 	var dir_vector = {up: Vector2.UP,down: Vector2.DOWN,left: Vector2.LEFT, right:Vector2.RIGHT}
@@ -98,6 +103,7 @@ func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
 	player_in_range = false
 	state = States.Wander
+	speed = 50
 
 func Get_player_pos():
 	pass

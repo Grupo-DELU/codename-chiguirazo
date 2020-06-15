@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-class_name movemento_base
+class_name movemento_base2
 
 #Referencias a nodos hijos
 onready var Attack = $"Attack"
@@ -59,7 +59,7 @@ func move_down()-> void:
 func _physics_process(delta: float) -> void:
 	#Movimiento del Jugador
 	
-	v_direction = Vector2()
+	#v_direction = Vector2()
 	if right:
 		v_direction.x += 1
 	if left:
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 		v_direction.y += 1
 	if up:
 		v_direction.y -= 1
-	#v_direction += acc
+	v_direction += acc
 	if v_direction.length() > 0:
 		v_direction = v_direction.normalized() * speed
 	move_and_slide(v_direction)
