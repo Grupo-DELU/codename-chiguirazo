@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/BE_Guard.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/BP_Lil_Wolf.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/BP_Lil_Wolf.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/BE_Guard.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 310 )
@@ -16,7 +16,7 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -20, 300 )
+position = Vector2( 138.622, 289.185 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -25,7 +25,7 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -20, 300 )
+position = Vector2( -557.151, 209.874 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
@@ -33,11 +33,11 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 510, -20 )
+position = Vector2( 528.025, 52.1008 )
 shape = SubResource( 2 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( -3.15046, 472.185 )
+position = Vector2( -42.8059, 237.857 )
 collision_layer = 16
 collision_mask = 15
 __meta__ = {
@@ -48,16 +48,8 @@ __meta__ = {
 position = Vector2( 510, -20 )
 shape = SubResource( 2 )
 
-[node name="Enemy" parent="." instance=ExtResource( 1 )]
-position = Vector2( 624.799, 139.437 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 212.697, 140.596 )
 
-[node name="Enemy3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 347.391, 290.128 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 802.888, 238.756 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 268.621, 139.437 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 407.369, 129.781 )

@@ -14,4 +14,7 @@ script = ExtResource( 3 )
 
 [node name="Attack" parent="." index="1"]
 script = ExtResource( 4 )
+
+[node name="PlayerDetector" parent="." index="5"]
+visible = true
 [connection signal="timeout" from="Attack/ATimer" to="Attack" method="_on_ATimer_timeout"]

@@ -1,4 +1,4 @@
-extends movemento_base
+extends movemento_base2
 
 class_name base_playeru
 
@@ -20,22 +20,9 @@ func update_stats():
 #Movimiento
 func get_input() -> void:
 	#Cuando se tiene que mover esta wea
-	if Input.is_action_pressed("right"):
-		move_right()
-	if Input.is_action_just_released("right"):
-		right = false
-	if Input.is_action_pressed("left"):
-		move_left()
-	if Input.is_action_just_released("left"):
-		left = false
-	if Input.is_action_pressed("down"):
-		move_down()
-	if Input.is_action_just_released("down"):
-		down = false
-	if Input.is_action_pressed("up"):
-		move_up()
-	if Input.is_action_just_released("up"):
-		up = false
+	v_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	v_direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	
 	
 func _process(delta: float) -> void:
 	#Detecta que te estoy pidiendo todo el tiempo

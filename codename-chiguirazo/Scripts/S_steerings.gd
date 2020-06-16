@@ -25,18 +25,17 @@ func Attacc(enemy :Node2D) -> void:
 	#esperarqueterminelaanimaciondealerta#
 	if enemy.j_spotted == true:
 		print("pAnIc")
-		pass
+	
 	else:
 		#Sigue con la mirada al player hasta que se acabe el cooldown
+		p_position = enemy.player.get_global_position()
 		if enemy.get_node("Attack").c_attack == false:
-			#p_position = enemy.player.get_global_position()
 			#enemy.look_at(p_position)
 			#print("te estoy siguiendo conchetumare")
 			pass
 		#Cuando se acabe dispara
-		if enemy.get_node("Attack").c_attack == true:
+		else:
 			print("AJA!")
-			p_position = enemy.player.get_global_position()
 			enemy.get_node("Attack").Attack(p_position)
 
 func Wander(enemy :Node2D) -> void:
@@ -44,26 +43,48 @@ func Wander(enemy :Node2D) -> void:
 	var future = enemy.global_position + (enemy.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
 	var target = future + Vector2(WANDER_RING_RADIUS,0).rotated(rng.randf_range(0,2 * PI))
-	enemy.acc = seek(enemy,target) #Has que siga el target mediante seek
-	if !enemy.Move_check():
-		match enemy.current_direction: #Si chocas cambia la velocidad en la direccion contraria al choque
-			0:
-				enemy.v_direction = Vector2(0,-enemy.speed)
-			1:
-				enemy.v_direction = Vector2(0,enemy.speed)
-			2:
-				enemy.v_direction = Vector2(-enemy.speed,0)
-			3:
-				enemy.v_direction = Vector2(enemy.speed,0)
+	enemy.acc += seek(enemy,target) #Has que siga el target mediante seek
+	
+func Avoid(enemy:KinematicBody2D) -> Vector2:
+	var closest_collider : PhysicsBody2D#Almacena el obstaculo mas cercano
+	var colliding_whisker : RayCast2D = null #whisker que colisiona con el objeto que nos interesa
+	var closest_coll_point: Vector2 = Vector2(999,999) #distancia del obstaculo mas cercano
+	var pos : Vector2 = enemy.get_global_position() #posicion de este objeto
+	
+	#Temporales
+	var collider : PhysicsBody2D #Obstaculo temporal
+	var coll_point : Vector2 #punto de colision temporal
+	
+	# Fuerza requerida
+	var steer_length
+	var steer
+	
+	for w in enemy.whiskers.get_children():
+		collider = w.get_collider()
+		if collider:  #Truey si el whisker está chocando
+			coll_point = w.get_collision_point()
+			if pos.distance_to(coll_point) < pos.distance_to(closest_coll_point): #¿Debo priorizar la 
+			                                                        #        colisión con este objeto?
+				closest_collider = collider #de ser asi, lo guardo
+				closest_coll_point = coll_point
+				colliding_whisker = w
+	
+	if !colliding_whisker: #El choque se detuvo por si solo antes de llegar aqui
+		return Vector2(0,0)
+	
+	steer_length = colliding_whisker.get_cast_to() - closest_coll_point
+	steer = colliding_whisker.get_collision_normal() * steer_length
+	
+	return -steer.clamped(MAX_FORCE)
 	
 	
 	
-func Flee(enemy :Node2D) ->void:
+func Flee(enemy: Node2D) ->void:
 	pass
 	
 func seek(enemy, target):
-	d_velocity = (target - enemy.global_position).normalized() * enemy.speed
-	steer = d_velocity - enemy.v_direction
-	steer = steer.clamped(MAX_FORCE)
+	d_velocity = (target - enemy.global_position).normalized() * enemy.speed #maxima velocidad que se puede usar para llegar al objetivo
+	steer = d_velocity - enemy.v_direction #se le resta la velocidad actual para obtener la velocidad restante
+	steer = steer.clamped(MAX_FORCE) 
 	return steer
 

@@ -11,13 +11,14 @@ var j_spotted : bool = false #Esto para correr la animacion de panico
 var current_direction: int
 
 enum States{
-	Wander, Attack , Flee
+	Wander, Attack, Flee, Avoid
 	} 
 var state : int = States.Wander #Estado actual pal' cerebro
 
 func _ready():
 	update_stats()
-	right = true
+	#right = true
+	v_direction = Vector2.RIGHT
 	randomize()
 
 func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
@@ -26,20 +27,32 @@ func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
 func _process(delta):
 	
 	if !Move_check():   #Cambia de direccipon si vas a chocar
-
-		Change_diretion()
+		state = States.Avoid
+	elif state == States.Avoid:  #!!Posiblemente haya que hacer otras distinciones para
+		state = States.Wander #   determinar si tiene que entrar en otro estado luego de esquivar.
 		
 	#if $"Health".current_helth < 2:
 		#state = States.Flee
+	Rotate_whiskers()
 	
 	match state:        #State Machine
 		States.Attack:
+			print("ORA")
 			steerings.Attacc(self)
 			j_spotted = false
+			
 		States.Wander:
+			print("NaNa")
+			if player_in_range:
+				state = States.Attack
 			steerings.Wander(self)
+			
 		States.Flee:
 			steerings.Flee(self)
+			
+		States.Avoid:
+			print("Ole")
+			acc += steerings.Avoid(self)
 		
 
 func Move_check() -> bool:  #Revisa si vas a chocar
@@ -48,50 +61,12 @@ func Move_check() -> bool:  #Revisa si vas a chocar
 		if w.is_colliding():
 			return false
 	return true
-	RayCast2D
 
 func Change_diretion() -> void:   #Cambia dirección de forma random
-	var d_index = randi() % 4
-	
-	if up == true:    #Deja e moverse en la dirección actual
-			up = false
-	elif down == true:
-			down = false
-	elif left == true:
-			left = false
-	elif right == true:
-			right = false
-	
-	match d_index:   #Intenta moverse en otra dirección
-		0:
-			up = true
-			current_direction = 0
-		1:
-			down = true
-			current_direction = 1
-		2:
-			left = true
-			current_direction = 2
-		3:
-			right = true
-			current_direction = 3
-		
 	Rotate_whiskers()
-	
 
 func Rotate_whiskers() -> void:
-	var dir_vector = {up: Vector2.UP,down: Vector2.DOWN,left: Vector2.LEFT, right:Vector2.RIGHT}
-	var actual_dir
-	var c = 0
-	
-	for dir in [up,down,left,right]:
-		if dir == true:
-			actual_dir = dir_vector[dir]
-			break
-			
-	whiskers.rotation = actual_dir.angle()
-
-
+	whiskers.rotation = v_direction.angle()
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 	j_spotted = true
@@ -101,9 +76,10 @@ func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 
 
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
-	player_in_range = false
-	state = States.Wander
-	speed = 50
+	if body == player:
+		player_in_range = false
+		state = States.Wander
+		speed = 50
 
 func Get_player_pos():
 	pass
