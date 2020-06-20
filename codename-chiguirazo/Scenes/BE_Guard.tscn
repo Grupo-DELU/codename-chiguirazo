@@ -6,8 +6,8 @@
 [ext_resource path="res://Scripts/Attack/BE_enem_attack.gd" type="Script" id=4]
 
 [node name="Enemy" index="0" instance=ExtResource( 1 )]
+position = Vector2( 263.25, 245.25 )
 script = ExtResource( 2 )
-speed = 50.0
 
 [node name="Health" parent="." index="0"]
 script = ExtResource( 3 )

@@ -18,16 +18,17 @@ func update_stats():
 	Attack.get_node("STimer").wait_time = skill_cooldown
 
 #Movimiento
-func get_input() -> void:
+func Get_input() -> Vector2:
 	#Cuando se tiene que mover esta wea
-	v_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	v_direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	
+	var axis: Vector2 = Vector2.ZERO
+	axis.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	axis.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+	return axis.normalized()
 	
 func _process(delta: float) -> void:
 	#Detecta que te estoy pidiendo todo el tiempo
-	get_input()
-
+	#get_input()
+	pass
 #Metodos de experiencia y niveles
 
 func add_xp(value: float) -> void:   #LLamada por un enemigo cuando muere (te da su xp)
@@ -54,7 +55,7 @@ func Level_up() -> void:
 	print("Nivel ", level, "!")
 	   #Cada nivel requiere de mas xp para subir al siguiente
 	
-	speed += 25*level             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
+	max_speed += 25*level             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
 	Damage_change(damage + level)
 	Defense_change(defense + level)
 	

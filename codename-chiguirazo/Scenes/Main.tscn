@@ -16,7 +16,7 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 138.622, 289.185 )
+position = Vector2( -17.378, 315.685 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -25,7 +25,7 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -557.151, 209.874 )
+position = Vector2( -19.401, 290.874 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
@@ -33,11 +33,11 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 528.025, 52.1008 )
+position = Vector2( 510.025, -22.1492 )
 shape = SubResource( 2 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( -42.8059, 237.857 )
+position = Vector2( -0.0559006, 642.857 )
 collision_layer = 16
 collision_mask = 15
 __meta__ = {
@@ -52,4 +52,5 @@ shape = SubResource( 2 )
 position = Vector2( 212.697, 140.596 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 407.369, 129.781 )
+position = Vector2( 396.119, 271.531 )
+max_speed = 50.0

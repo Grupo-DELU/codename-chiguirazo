@@ -5,6 +5,7 @@ const F_RADIUS = 200   #Radio de panico
 const MAX_FORCE = 10  #Maxima fuerza del steering
 const WANDER_RING_DISTANCE = 150   #Distancia del enemigo al centro del wandercircle
 const WANDER_RING_RADIUS = 100  #Radio del WanderCircle
+const FLEE_RADIUS = 1000 #Radio de panico
 
 onready var a_system = get_parent().get_node("Attack")
 onready var player = get_node("Main/Player")
@@ -27,7 +28,7 @@ func Attacc(enemy :Node2D) -> void:
 		print("pAnIc")
 	
 	else:
-		#Sigue con la mirada al player hasta que se acabe el cooldown
+		#Va a seguir con la mirada al player hasta que se acabe el cooldown
 		p_position = enemy.player.get_global_position()
 		if enemy.get_node("Attack").c_attack == false:
 			#enemy.look_at(p_position)
@@ -40,6 +41,7 @@ func Attacc(enemy :Node2D) -> void:
 
 func Wander(enemy :Node2D) -> void:
 	#Setea la posicion del WanderCircle
+	enemy.max_speed = 50.0
 	var future = enemy.global_position + (enemy.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
 	var target = future + Vector2(WANDER_RING_RADIUS,0).rotated(rng.randf_range(0,2 * PI))
@@ -72,18 +74,29 @@ func Avoid(enemy:KinematicBody2D) -> Vector2:
 	if !colliding_whisker: #El choque se detuvo por si solo antes de llegar aqui
 		return Vector2(0,0)
 	
-	steer_length = colliding_whisker.get_cast_to() - closest_coll_point
-	steer = colliding_whisker.get_collision_normal() * steer_length
+	steer_length = (colliding_whisker.get_cast_to() - closest_coll_point).length()
+	steer = -colliding_whisker.get_collision_normal() * steer_length
 	
 	return -steer.clamped(MAX_FORCE)
 	
 	
 	
 func Flee(enemy: Node2D) ->void:
-	pass
-	
+	steer = Vector2.ZERO
+	var distance = (enemy.global_position - enemy.player.global_position).length()
+	if distance < FLEE_RADIUS:
+		enemy.player_in_panic_range = true
+		enemy.max_speed = 300.0
+		d_velocity = (enemy.global_position - enemy.player.global_position).normalized() * enemy.max_speed
+	else:
+		enemy.player_in_panic_range = false
+		d_velocity = enemy.v_direction.normalized() * enemy.max_speed
+	steer = d_velocity - enemy.v_direction
+	steer = steer.clamped(MAX_FORCE)
+	enemy.acc = steer
+
 func seek(enemy, target):
-	d_velocity = (target - enemy.global_position).normalized() * enemy.speed #maxima velocidad que se puede usar para llegar al objetivo
+	d_velocity = (target - enemy.global_position).normalized() * enemy.max_speed #maxima velocidad que se puede usar para llegar al objetivo
 	steer = d_velocity - enemy.v_direction #se le resta la velocidad actual para obtener la velocidad restante
 	steer = steer.clamped(MAX_FORCE) 
 	return steer

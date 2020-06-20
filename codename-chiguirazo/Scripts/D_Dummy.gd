@@ -8,12 +8,13 @@ const HEIGHT = 600
 
 var rng = RandomNumberGenerator.new()
 
-var max_speed: int = 50
+var max_speed: int = 500
 var velocity_direction 
 var acceleration: Vector2 
 var desired_velocity: Vector2
 var steer: Vector2
 var target: Vector2
+var acc_magnitude = 2000
 
 func _ready():
 	velocity_direction = Vector2(max_speed,0)
@@ -22,12 +23,14 @@ func _ready():
 	
 func _physics_process(delta):
 	#acceleration = seek(get_global_mouse_position())
-	acceleration = wander()
-	#print(acceleration)
-	velocity_direction += acceleration
+	var direction = get_input()
+	if direction == Vector2.ZERO:
+		apply_friction(acc_magnitude * delta)
+	else:
+		apply_movement(direction * acc_magnitude * delta)
+	#velocity_direction += acceleration
 	if velocity_direction.length() > max_speed:
 		velocity_direction = velocity_direction.normalized() * max_speed
-	print(velocity_direction)
 	move_and_slide(velocity_direction)
 	if position.x > WIDTH:
 		 position.x = 0
@@ -38,7 +41,11 @@ func _physics_process(delta):
 	if position.y < 0:
 		position.y = HEIGHT
 
-
+func get_input():
+	var direction = Vector2.ZERO
+	direction.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	direction.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+	return direction.normalized()
 
 func seek(target: Vector2) -> Vector2:
 	desired_velocity = (target - position).normalized() * max_speed
@@ -52,5 +59,12 @@ func wander() -> Vector2:
 	print(future)
 	return seek(target)
 	
-
-
+func apply_friction(deceleration):
+	if velocity_direction.length() > deceleration:
+		velocity_direction -= velocity_direction.normalized() * deceleration
+	else:
+		velocity_direction = Vector2.ZERO
+		
+func apply_movement(acceleration):
+	velocity_direction += acceleration
+	velocity_direction = velocity_direction.clamped(max_speed)

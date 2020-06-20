@@ -3,7 +3,7 @@ extends attaku_base
 class_name enem_attack
 
 #Atributos
-var speed :float = get_parent().speed
+var speed :float = get_parent().max_speed
 var bullet: PackedScene = preload("res://Scenes/Bullet.tscn")
 
 var cooldown_course #Para resumir un yield antes de que la clase deje de existir

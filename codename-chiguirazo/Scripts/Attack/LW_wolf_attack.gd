@@ -27,7 +27,7 @@ func Use_skill() -> void: #L1: BUFF
 	var wolfie = get_parent()   #La skill es un buff a estas 3 stats
 	wolfie.buffed = true
 	wolfie.damage *= m_buff
-	wolfie.speed *= m_buff
+	wolfie.max_speed *= m_buff
 	wolfie.defense *= m_buff
 	Buff_duration.start()
 	
@@ -35,7 +35,7 @@ func Use_skill() -> void: #L1: BUFF
 	yield(Buff_duration,"timeout")  #El buff es temporal (se deshace luegode un tiempo)
 	
 	wolfie.damage /= m_buff
-	wolfie.speed /= m_buff
+	wolfie.max_speed /= m_buff
 	wolfie.defense /= m_buff
 	emit_signal("b_finished")
 	wolfie.buffed = false
