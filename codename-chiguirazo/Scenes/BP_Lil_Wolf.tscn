@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/ME_Base_Playeru.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/LW_wolf_extras.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/ME_healto_base.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Attack/LW_wolf_attack.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/Lobito.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/BP_player_movement.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Lobito.png" type="Texture" id=6]
 
-[node name="Player" instance=ExtResource( 1 )]
-position = Vector2( 461.25, 308.25 )
+[node name="Player" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Health" parent="." index="0"]
@@ -19,10 +19,13 @@ script = ExtResource( 4 )
 [node name="BDuration" type="Timer" parent="Attack" index="3"]
 one_shot = true
 
+[node name="Movement" parent="." index="2"]
+script = ExtResource( 5 )
+
 [node name="Supuraitu" parent="." index="4"]
 position = Vector2( 8.75, 0 )
 scale = Vector2( 1.91667, 1.875 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 [connection signal="timeout" from="Attack/ATimer" to="Attack" method="_on_ATimer_timeout"]
 [connection signal="timeout" from="Attack/STimer" to="Attack" method="_on_STimer_timeout"]
 [connection signal="timeout" from="Attack/BDuration" to="Attack" method="_on_BDuration_timeout"]

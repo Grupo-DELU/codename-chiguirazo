@@ -1,4 +1,4 @@
-extends base_playeru
+extends player_interface
 
 var buffed : bool= false
 
