@@ -3,16 +3,6 @@ extends Node2D
 class_name movemento_base
 
 var entity = get_parent()
-"""
-#Referencias a nodos hijos
-onready var Attack = $"Attack"
-onready var Health = $"Health"
-
-#Variables manejadas en nodos hijos 
-export(float) var damage :float = 2.0 setget Damage_change
-export(float) var defense:float = 1.0 setget Defense_change
-export(float) var attack_cooldown = 1
-"""
 
 #Atributos de Movimiento
 export(float) var max_speed :float = 500
@@ -21,30 +11,6 @@ var acc: Vector2 = Vector2.ZERO
 var v_direction :Vector2
 var motion_direction: Vector2
 
-"""
-#señales
-signal health_updated(new_health) #Llamada desde Health
-
-
-#Setgets 
-
-func Damage_change(new_damage: float)-> void:
-	damage = new_damage
-	update_stats()
-	print("Daño: " + str(damage))
-
-func Defense_change(new_defense: float)-> void:
-	defense = new_defense
-	update_stats()
-	print("Defensa: " + str(defense))
-
-#Métodos de Movimiento
-
-func update_stats()-> void:
-	Attack.damage = damage
-	Attack.get_node("ATimer").wait_time = attack_cooldown
-	Health.defense = defense
-"""
 func _physics_process(delta: float) -> void:
 	#Movimiento del Jugador
 	if Get_input() == null: #Diferenciar jugador y enemigo

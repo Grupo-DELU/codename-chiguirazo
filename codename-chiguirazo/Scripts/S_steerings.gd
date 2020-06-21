@@ -30,7 +30,8 @@ func Attacc(enemy :Node2D) -> void:
 	else:
 		#Va a seguir con la mirada al player hasta que se acabe el cooldown
 		p_position = enemy.player.get_global_position()
-		if enemy.get_node("Attack").c_attack == false:
+		
+		if enemy.Attack.c_attack == false:
 			#enemy.look_at(p_position)
 			#print("te estoy siguiendo conchetumare")
 			pass
@@ -42,10 +43,10 @@ func Attacc(enemy :Node2D) -> void:
 func Wander(enemy :Node2D) -> void:
 	#Setea la posicion del WanderCircle
 	enemy.max_speed = 50.0
-	var future = enemy.global_position + (enemy.v_direction.normalized() * WANDER_RING_DISTANCE)
+	var future = enemy.global_position + (enemy.Movement.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
 	var target = future + Vector2(WANDER_RING_RADIUS,0).rotated(rng.randf_range(0,2 * PI))
-	enemy.acc += seek(enemy,target) #Has que siga el target mediante seek
+	enemy.Movement.acc += seek(enemy,target) #Has que siga el target mediante seek
 	
 func Avoid(enemy:KinematicBody2D) -> Vector2:
 	var closest_collider : PhysicsBody2D#Almacena el obstaculo mas cercano
@@ -61,7 +62,7 @@ func Avoid(enemy:KinematicBody2D) -> Vector2:
 	var steer_length
 	var steer
 	
-	for w in enemy.whiskers.get_children():
+	for w in enemy.Movement.whiskers.get_children():
 		collider = w.get_collider()
 		if collider:  #Truey si el whisker está chocando
 			coll_point = w.get_collision_point()
@@ -90,14 +91,14 @@ func Flee(enemy: Node2D) ->void:
 		d_velocity = (enemy.global_position - enemy.player.global_position).normalized() * enemy.max_speed
 	else:
 		enemy.player_in_panic_range = false
-		d_velocity = enemy.v_direction.normalized() * enemy.max_speed
-	steer = d_velocity - enemy.v_direction
+		d_velocity = enemy.Movement.v_direction.normalized() * enemy.max_speed
+	steer = d_velocity - enemy.Movement.v_direction
 	steer = steer.clamped(MAX_FORCE)
-	enemy.acc = steer
+	enemy.Movement.acc = steer
 
 func seek(enemy, target):
 	d_velocity = (target - enemy.global_position).normalized() * enemy.max_speed #maxima velocidad que se puede usar para llegar al objetivo
-	steer = d_velocity - enemy.v_direction #se le resta la velocidad actual para obtener la velocidad restante
+	steer = d_velocity - enemy.Movement.v_direction #se le resta la velocidad actual para obtener la velocidad restante
 	steer = steer.clamped(MAX_FORCE) 
 	return steer
 

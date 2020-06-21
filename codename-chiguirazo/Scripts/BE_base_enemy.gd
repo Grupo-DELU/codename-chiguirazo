@@ -20,7 +20,7 @@ var state : int = States.Wander #Estado actual pal' cerebro
 func _ready():
 	update_stats()
 	#right = true
-	motion_direction = Vector2.RIGHT
+	#motion_direction = Vector2.RIGHT
 	randomize()
 
 func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
@@ -64,7 +64,7 @@ func _process(delta):
 		
 		States.Avoid:
 			print("Ole")
-			acc += steerings.Avoid(self)
+			Movement.acc += steerings.Avoid(self)
 		
 """
 func Move_check() -> bool:  #Revisa si vas a chocar
