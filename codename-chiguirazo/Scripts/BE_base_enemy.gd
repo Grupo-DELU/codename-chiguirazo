@@ -1,9 +1,9 @@
-extends movemento_base2
+extends base_interface
 
-class_name base_Enemy
+class_name base_enemy
 
 onready var steerings = preload("res://Scripts/S_steerings.gd").new()
-onready var whiskers = $"Whiskers"
+#onready var whiskers = $"Whiskers"
 
 var player : Node2D  #Holds player node
 var player_in_attack_range :bool = false  #Chequea si el jugadoor esta dentro del rango de ataque
@@ -11,8 +11,6 @@ var player_in_panic_range: bool = true #Chequea si el jugadoor esta dentro del r
 
 var j_spotted : bool = false #Esto para correr la animacion de panico
 var panic_state: bool = false #Detecta si tiene poca vida
-
-var current_direction: int
 
 enum States{
 	Wander, Attack, Flee, Avoid
@@ -30,7 +28,7 @@ func Enem_take_damage(damage :float) ->void:   #Para ducktyping xd
 
 func _process(delta):
 	
-	if !Move_check():   #Cambia de direccipon si vas a chocar
+	if !Movement.Move_check():   #Cambia de direccipon si vas a chocar
 		state = States.Avoid
 	elif state == States.Avoid:  #!!Posiblemente haya que hacer otras distinciones para
 		state = States.Wander #   determinar si tiene que entrar en otro estado luego de esquivar.
@@ -44,7 +42,7 @@ func _process(delta):
 		state = States.Wander      #para que cambie a wander cuando salga del rango
 	print($"Health".current_helth)
 	
-	Rotate_whiskers()
+	Movement.Rotate_whiskers()
 	
 	match state:        #State Machine
 		States.Attack:
@@ -68,7 +66,7 @@ func _process(delta):
 			print("Ole")
 			acc += steerings.Avoid(self)
 		
-
+"""
 func Move_check() -> bool:  #Revisa si vas a chocar
 	
 	for w in whiskers.get_children():
@@ -81,6 +79,7 @@ func Change_diretion() -> void:   #Cambia dirección de forma random
 
 func Rotate_whiskers() -> void:
 	whiskers.rotation = v_direction.angle()
+"""
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 	j_spotted = true
