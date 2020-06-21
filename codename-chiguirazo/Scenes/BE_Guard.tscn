@@ -4,7 +4,9 @@
 [ext_resource path="res://Scripts/BE_base_enemy.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BE_enem_healto.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Attack/BE_enem_attack.gd" type="Script" id=4]
-[ext_resource path="res://Aenemy_move(WIP).gd" type="Script" id=5]
+[ext_resource path="res://Scripts/BE_enemy_movement.gd" type="Script" id=5]
+
+
 
 [node name="Enemy" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

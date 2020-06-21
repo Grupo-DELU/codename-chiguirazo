@@ -46,9 +46,9 @@ func _process(delta):
 	
 	match state:        #State Machine
 		States.Attack:
-			print("ORA")
-			steerings.Attacc(self)
-			j_spotted = false
+				print("ORA")
+				steerings.Attacc(self)
+				j_spotted = false
 			
 		States.Wander:
 			print("NaNa")
@@ -66,26 +66,11 @@ func _process(delta):
 			print("Ole")
 			Movement.acc += steerings.Avoid(self)
 		
-"""
-func Move_check() -> bool:  #Revisa si vas a chocar
-	
-	for w in whiskers.get_children():
-		if w.is_colliding():
-			return false
-	return true
-
-func Change_diretion() -> void:   #Cambia dirección de forma random
-	Rotate_whiskers()
-
-func Rotate_whiskers() -> void:
-	whiskers.rotation = v_direction.angle()
-"""
 
 func _on_PlayerDetector_body_entered(body: PhysicsBody2D) -> void:
 	j_spotted = true
 	player_in_attack_range = true
 	player = body
-	state = States.Attack
 
 
 func _on_PlayerDetector_body_exited(body: PhysicsBody2D) -> void:
