@@ -40,30 +40,29 @@ func _process(delta):
 		state = States.Flee        #para que siga huyendo cuando este en el rango
 	if panic_state and not player_in_attack_range:
 		state = States.Wander      #para que cambie a wander cuando salga del rango
-	print($"Health".current_helth)
 	
 	Movement.Rotate_whiskers()
 	
 	match state:        #State Machine
 		States.Attack:
-				print("ORA")
+				
 				steerings.Attacc(self)
 				j_spotted = false
 			
 		States.Wander:
-			print("NaNa")
+			
 			if player_in_attack_range and not panic_state:
 				state = States.Attack
 			steerings.Wander(self)
 			
 		States.Flee:
-			print("ohno")
+			
 			if not player_in_panic_range:
 				state = States.Wander
 			steerings.Flee(self)
 		
 		States.Avoid:
-			print("Ole")
+			
 			Movement.acc += steerings.Avoid(self)
 		
 

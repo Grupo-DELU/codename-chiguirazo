@@ -1,0 +1,33 @@
+[gd_scene format=2]
+
+[node name="Bar" type="HBoxContainer"]
+margin_right = 105.0
+margin_bottom = 40.0
+
+[node name="Counter" type="MarginContainer" parent="."]
+margin_right = 100.0
+margin_bottom = 40.0
+
+[node name="Background" type="NinePatchRect" parent="Counter"]
+editor/display_folded = true
+margin_right = 100.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+
+[node name="Title" type="Label" parent="Counter/Background"]
+margin_right = 50.0
+margin_bottom = 40.0
+text = "HP:"
+valign = 1
+
+[node name="Number" type="Label" parent="Counter/Background"]
+margin_right = 50.0
+margin_bottom = 40.0
+text = "5"
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="TextureProgress" parent="."]
+margin_left = 104.0
+margin_right = 105.0
+margin_bottom = 40.0

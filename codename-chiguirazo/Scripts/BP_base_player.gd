@@ -4,15 +4,20 @@ class_name player_interface
 
 ##Atributos para los sliders (estos se usan en nodos hijos)
 export(float) var skill_cooldown :float= 2 #Tiemppo minimo entre usos de skills (Attack)
+
+##Niveles
 var level : int = 1
 var xp_current :float = 0.0
 var xp_required :float = 5.0
+signal xp_add(body)
 
 func _ready():
 	update_stats()
+	emit_signal("health_updated", Health.max_health)   #GUI Setup
 	
 func update_stats():
 	.update_stats()
+	 #GUI Setup
 	Attack.get_node("STimer").wait_time = skill_cooldown
 
 func Player_take_damage(damage :float) ->void:   #Para ducktyping xd
@@ -39,6 +44,7 @@ func Level_up_call() -> void:
 		xp_current -= xp_required
 		xp_required *= 1.5
 		Level_up()
+	emit_signal("xp_add",self)
 
 func Level_up() -> void:
 	
