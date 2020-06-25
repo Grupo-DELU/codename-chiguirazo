@@ -6,16 +6,15 @@ var entity = get_parent()
 
 #Atributos de Movimiento
 export(float) var max_speed :float = 500
-var acc_magnitude = 2000
+var acc_magnitude = max_speed / 0.25
 var acc: Vector2 = Vector2.ZERO
 var v_direction :Vector2
 var motion_direction: Vector2
 
 func _physics_process(delta: float) -> void:
 	#Movimiento del Jugador
-	if Get_input() == null: #Diferenciar jugador y enemigo
-		pass
-	else:
+	if Get_input() != null: #Diferenciar jugador y enemigo
+	
 		motion_direction = Get_input()
 	if motion_direction == Vector2.ZERO:
 		Apply_friction(acc_magnitude * delta)
@@ -26,7 +25,7 @@ func _physics_process(delta: float) -> void:
 			Apply_movement(acc)
 	entity.move_and_slide(v_direction)
 
-func Apply_friction(deceleration):
+func Apply_friction(deceleration : float):
 	if v_direction.length() > deceleration:
 		v_direction -= v_direction.normalized() * deceleration
 	else:

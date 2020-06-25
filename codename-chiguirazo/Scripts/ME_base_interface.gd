@@ -39,3 +39,4 @@ func update_stats()-> void:
 	Attack.get_node("ATimer").wait_time = attack_cooldown
 	Health.defense = defense
 	Movement.max_speed = max_speed
+	Movement.acc_magnitude = max_speed / 0.25
