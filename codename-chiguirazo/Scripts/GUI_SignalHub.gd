@@ -6,8 +6,11 @@ onready var exp_bar : HBoxContainer= $"HBoxContainer/Bars/Experience"
 func _ready():
 	var player : KinematicBody2D = get_node("/root/Main/Player")
 	
+	
+	
 	player.connect("xp_add",self,"Modify_xp")
 	player.connect("health_updated",self, "Modify_health")
+	Modify_health(player.Health.max_health)
 
 func Modify_xp(player : KinematicBody2D):
 	var counter : NinePatchRect = exp_bar.get_node("Counter/Background")

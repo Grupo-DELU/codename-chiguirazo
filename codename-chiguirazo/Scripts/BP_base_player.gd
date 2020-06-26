@@ -13,7 +13,6 @@ signal xp_add(body)
 
 func _ready():
 	update_stats()
-	emit_signal("health_updated", Health.max_health)   #GUI Setup
 	emit_signal("xp_add",self) 
 	
 func update_stats():
@@ -56,6 +55,8 @@ func Level_up() -> void:
 	max_speed += 25*level             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
 	Damage_change(damage + level)
 	Defense_change(defense + level)
+	Health.current_helth = Health.max_health
+	emit_signal("health_updated",Health.current_helth)
 	
 	print("Player Current xp: " + str(xp_current))
 	print("Player Required xp: " + str(xp_required))
