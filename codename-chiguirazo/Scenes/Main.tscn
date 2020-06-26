@@ -15,15 +15,6 @@ extents = Vector2( 530, 20 )
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 833.168, 194.262 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 727.975, 178.678 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 772.779, 303.351 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 254.607, 209.847 )
-
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 515.873, 306.503 )
 
@@ -78,3 +69,12 @@ shape = SubResource( 1 )
 light_mask = 16
 anchor_bottom = 1.0
 margin_right = 177.0
+
+[node name="Enemy2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 268.826, 185.061 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 646.741, 126.621 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 453.888, 140.257 )

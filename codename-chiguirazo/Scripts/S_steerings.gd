@@ -18,9 +18,6 @@ var s_time :float = 5.0  #Seeking_time
 var t_start :bool = false #Start_the_timer
 var t_seeking :bool = true #Its_seeking_time
 
-func _process(delta: float) -> void:
-	pass
-
 
 func Attacc(enemy :Node2D) -> void:
 	#esperarqueterminelaanimaciondealerta#
@@ -45,6 +42,7 @@ func Wander(enemy :Node2D) -> void:
 	enemy.max_speed = 50.0
 	var future = enemy.global_position + (enemy.Movement.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
+	rng.randomize()
 	var target = future + Vector2(WANDER_RING_RADIUS,0).rotated(rng.randf_range(0,2 * PI))
 	enemy.Movement.acc += seek(enemy,target) #Has que siga el target mediante seek
 	

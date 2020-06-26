@@ -10,7 +10,7 @@ onready var Movement = $"Movement"
 #Variables manejadas en nodos hijos 
 export(float) var damage :float = 2.0 setget Damage_change
 export(float) var defense:float = 1.0 setget Defense_change
-export(float) var max_speed:float = 300 setget Speed_change
+export(float) var max_speed:float = 500 setget Speed_change
 export(float) var attack_cooldown = 1
 
 #señales

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/GUI_SignalHub.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GUI_signal_hub.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/B_LifeBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/B_ExperienceBar.tscn" type="PackedScene" id=3]
 
@@ -13,6 +13,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 script = ExtResource( 1 )
+usable_skill_color = Color( 0.588235, 0.831373, 0.2, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 20.0
@@ -20,9 +21,23 @@ margin_top = 20.0
 margin_right = 1004.0
 margin_bottom = 104.0
 
-[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 133.0
+[node name="Skills" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 50.0
 margin_bottom = 84.0
+rect_min_size = Vector2( 50, 84 )
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Skills"]
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 20 )
+color = Color( 0.588235, 0.831373, 0.2, 1 )
+
+[node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
+editor/display_folded = true
+margin_left = 54.0
+margin_right = 187.0
+margin_bottom = 84.0
+size_flags_horizontal = 2
 
 [node name="Health" parent="HBoxContainer/Bars" instance=ExtResource( 2 )]
 margin_left = 0.0
@@ -33,14 +48,8 @@ size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="Experience" parent="HBoxContainer/Bars" instance=ExtResource( 3 )]
-margin_left = 5.0
+margin_left = 0.0
 margin_top = 26.0
-margin_right = 52.0
+margin_right = 47.0
 margin_bottom = 84.0
-size_flags_horizontal = 4
-alignment = 2
-
-[node name="Skills" type="HBoxContainer" parent="HBoxContainer"]
-margin_left = 137.0
-margin_right = 137.0
-margin_bottom = 84.0
+size_flags_horizontal = 2

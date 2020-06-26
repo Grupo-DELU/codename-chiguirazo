@@ -22,6 +22,8 @@ func Basic_attack() -> void: #Slash (AOE)
 	.Basic_attack() #esto es una supercall, ejecuta la función como está declarada en la clase base
 	
 func Use_skill() -> void: #L1: BUFF
+	prolongated_skill = true
+	Player.emit_signal("skill_used",Player)
 	c_skill = false
 	
 	var wolfie = get_parent()   #La skill es un buff a estas 3 stats
@@ -29,7 +31,6 @@ func Use_skill() -> void: #L1: BUFF
 	wolfie.damage *= m_buff
 	wolfie.max_speed *= m_buff
 	wolfie.defense *= m_buff
-	Buff_duration.start()
 	
 	Buff_duration.start()
 	yield(Buff_duration,"timeout")  #El buff es temporal (se deshace luegode un tiempo)

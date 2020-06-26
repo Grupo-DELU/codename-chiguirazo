@@ -9,7 +9,9 @@ export(float) var skill_cooldown :float= 2 #Tiemppo minimo entre usos de skills 
 var level : int = 1
 var xp_current :float = 0.0
 var xp_required :float = 5.0
+
 signal xp_add(body)
+signal skill_used(body)
 
 func _ready():
 	update_stats()
