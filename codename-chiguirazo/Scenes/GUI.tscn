@@ -18,21 +18,26 @@ script = ExtResource( 1 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 104.0
+margin_bottom = 122.0
 
 [node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 105.0
-margin_bottom = 84.0
+margin_right = 193.0
+margin_bottom = 102.0
 
 [node name="Health" parent="HBoxContainer/Bars" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 193.0
+margin_bottom = 40.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="Experience" parent="HBoxContainer/Bars" instance=ExtResource( 3 )]
 margin_top = 44.0
-margin_bottom = 84.0
+margin_right = 193.0
+margin_bottom = 102.0
 
 [node name="Skills" type="HBoxContainer" parent="HBoxContainer"]
-margin_left = 109.0
-margin_right = 109.0
-margin_bottom = 84.0
+margin_left = 197.0
+margin_right = 197.0
+margin_bottom = 102.0

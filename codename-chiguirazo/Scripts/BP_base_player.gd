@@ -14,6 +14,7 @@ signal xp_add(body)
 func _ready():
 	update_stats()
 	emit_signal("health_updated", Health.max_health)   #GUI Setup
+	emit_signal("xp_add",self) 
 	
 func update_stats():
 	.update_stats()
@@ -34,7 +35,6 @@ func add_xp(value: float) -> void:   #LLamada por un enemigo cuando muere (te da
 	
 	print("Player Current xp: " + str(xp_current))
 	print("Player Required xp: " + str(xp_required))
-	
 	Level_up_call()
 	
 

@@ -16,7 +16,6 @@ export(float) var attack_cooldown = 1
 #señales
 signal health_updated(new_health) #Llamada desde Health
 
-
 #Setgets 
 
 func Damage_change(new_damage: float)-> void:
