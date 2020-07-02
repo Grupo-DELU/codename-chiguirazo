@@ -54,7 +54,7 @@ func Level_up() -> void:
 	print("Nivel ", level, "!")
 	   #Cada nivel requiere de mas xp para subir al siguiente
 	
-	max_speed += 25*level             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
+	Speed_change(max_speed + 25*level)             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
 	Damage_change(damage + level)
 	Defense_change(defense + level)
 	Health.current_helth = Health.max_health

@@ -16,7 +16,7 @@ func Basic_attack() -> void: #Slash (AOE)
 	i_slash.damage = damage
 	i_slash.position -= get_global_position()
 	i_slash.rotation = get_local_mouse_position().angle()
-	#main_scene.
+
 	add_child(i_slash)
 	
 	.Basic_attack() #esto es una supercall, ejecuta la función como está declarada en la clase base

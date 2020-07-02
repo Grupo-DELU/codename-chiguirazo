@@ -7,8 +7,7 @@ const WANDER_RING_DISTANCE = 150   #Distancia del enemigo al centro del wanderci
 const WANDER_RING_RADIUS = 100  #Radio del WanderCircle
 const FLEE_RADIUS = 1000 #Radio de panico
 
-onready var a_system = get_parent().get_node("Attack")
-onready var player = get_node("Main/Player")
+
 
 var rng = RandomNumberGenerator.new()
 var p_position : Vector2 #PlayerPosition
@@ -39,7 +38,7 @@ func Attacc(enemy :Node2D) -> void:
 
 func Wander(enemy :Node2D) -> void:
 	#Setea la posicion del WanderCircle
-	enemy.max_speed = 50.0
+	enemy.Speed_change(50.0)
 	var future = enemy.global_position + (enemy.Movement.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
 	rng.randomize()
@@ -85,7 +84,7 @@ func Flee(enemy: Node2D) ->void:
 	var distance = (enemy.global_position - enemy.player.global_position).length()
 	if distance < FLEE_RADIUS:
 		enemy.player_in_panic_range = true
-		enemy.max_speed = 300.0
+		enemy.Speed_change(300.0)
 		d_velocity = (enemy.global_position - enemy.player.global_position).normalized() * enemy.max_speed
 	else:
 		enemy.player_in_panic_range = false
