@@ -17,7 +17,6 @@ var s_time :float = 5.0  #Seeking_time
 var t_start :bool = false #Start_the_timer
 var t_seeking :bool = true #Its_seeking_time
 
-
 func Attacc(enemy :Node2D) -> void:
 	#esperarqueterminelaanimaciondealerta#
 	if enemy.j_spotted == true:
@@ -27,7 +26,7 @@ func Attacc(enemy :Node2D) -> void:
 		#Va a seguir con la mirada al player hasta que se acabe el cooldown
 		p_position = enemy.player.get_global_position()
 		
-		if enemy.Attack.c_attack == false:
+		if !enemy.Attack.c_attack:
 			#enemy.look_at(p_position)
 			#print("te estoy siguiendo conchetumare")
 			pass
@@ -38,7 +37,7 @@ func Attacc(enemy :Node2D) -> void:
 
 func Wander(enemy :Node2D) -> void:
 	#Setea la posicion del WanderCircle
-	enemy.Speed_change(50.0)
+	enemy.Speed_change(enemy.ref_stats['speed']/10.0)
 	var future = enemy.global_position + (enemy.Movement.v_direction.normalized() * WANDER_RING_DISTANCE)
 	#Agarra un valor random de la circunferencia del WanderCircle
 	rng.randomize()
@@ -78,13 +77,12 @@ func Avoid(enemy:KinematicBody2D) -> Vector2:
 	return -steer.clamped(MAX_FORCE)
 	
 	
-	
 func Flee(enemy: Node2D) ->void:
 	steer = Vector2.ZERO
 	var distance = (enemy.global_position - enemy.player.global_position).length()
 	if distance < FLEE_RADIUS:
 		enemy.player_in_panic_range = true
-		enemy.Speed_change(300.0)
+		enemy.Speed_change(enemy.ref_stats['speed']*3/5) #Número de prueba xd
 		d_velocity = (enemy.global_position - enemy.player.global_position).normalized() * enemy.max_speed
 	else:
 		enemy.player_in_panic_range = false

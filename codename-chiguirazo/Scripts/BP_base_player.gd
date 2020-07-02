@@ -21,6 +21,7 @@ func update_stats():
 	.update_stats()
 	 #GUI Setup
 	Attack.get_node("STimer").wait_time = skill_cooldown
+	
 
 func Player_take_damage(damage :float) ->void:   #Para ducktyping xd
 	$"Health".Take_damage(damage)

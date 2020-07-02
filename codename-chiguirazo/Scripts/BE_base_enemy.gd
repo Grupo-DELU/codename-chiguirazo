@@ -3,7 +3,10 @@ extends base_interface
 class_name base_enemy
 
 onready var steerings = preload("res://Scripts/S_steerings.gd").new()
-#onready var whiskers = $"Whiskers"
+onready var ref_stats : Dictionary = {
+	'speed' : max_speed, 'damage' : damage, 'defense' : defense
+	}  #Este diccionario guarda las stats que tenia el enemigo al spawnear
+	#El enemigo en algún momento volverá a tener estos stats, a diferencia del Player en caso de subir de nivel
 
 var player : Node2D  #Holds player node
 var player_in_attack_range :bool = false  #Chequea si el jugadoor esta dentro del rango de ataque
@@ -52,7 +55,10 @@ func _process(delta):
 		States.Wander:
 			
 			if player_in_attack_range and not panic_state:
-				state = States.Attack
+				if Attack.c_attack:
+					state = States.Attack
+				else:
+					print("O.O")
 			steerings.Wander(self)
 			
 		States.Flee:

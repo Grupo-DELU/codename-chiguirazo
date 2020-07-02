@@ -6,7 +6,8 @@ var entity = get_parent()
 
 #Atributos de Movimiento
 var max_speed :float
-var acc_magnitude = max_speed / 0.25
+var acceleration_time = 0.25
+var acc_magnitude = max_speed / acceleration_time
 var acc: Vector2 = Vector2.ZERO
 var v_direction :Vector2
 var motion_direction: Vector2
