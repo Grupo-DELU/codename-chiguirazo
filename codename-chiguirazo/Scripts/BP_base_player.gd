@@ -1,4 +1,4 @@
-extends base_interface
+extends "res://Scripts/ME_base_interface.gd"
 
 class_name player_interface
 

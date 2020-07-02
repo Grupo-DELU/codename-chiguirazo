@@ -1,4 +1,4 @@
-extends player_interface
+extends "res://Scripts/BP_base_player.gd"
 
 var buffed : bool= false
 
