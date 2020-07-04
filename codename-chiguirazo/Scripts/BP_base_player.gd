@@ -19,16 +19,14 @@ func _ready():
 	
 func update_stats():
 	.update_stats()
-	 #GUI Setup
-	Attack.get_node("STimer").wait_time = skill_cooldown
 	
+	#Attack.get_node("STimer").wait_time = skill_cooldown
+	Attack.Set_skill_cooldown("Skill1", skill_cooldown)
+	      #hacer una sola función para los cooldowns de todas las skills???
 
 func Player_take_damage(damage :float) ->void:   #Para ducktyping xd
 	$"Health".Take_damage(damage)
 
-func _process(delta: float) -> void:
-	#Detecta que te estoy pidiendo todo el tiempo
-	pass
 #Metodos de experiencia y niveles
 
 func add_xp(value: float) -> void:   #LLamada por un enemigo cuando muere (te da su xp)

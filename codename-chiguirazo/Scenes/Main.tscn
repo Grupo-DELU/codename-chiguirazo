@@ -69,3 +69,6 @@ shape = SubResource( 1 )
 light_mask = 16
 anchor_bottom = 1.0
 margin_right = 227.0
+skill_usable = Color( 0.172549, 0.670588, 0.129412, 1 )
+skill_in_use = Color( 0.658824, 0.133333, 0.105882, 1 )
+skill_in_cooldown = Color( 0.278431, 0.282353, 0.341176, 1 )

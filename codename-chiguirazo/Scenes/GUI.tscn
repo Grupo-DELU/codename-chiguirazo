@@ -13,7 +13,6 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 script = ExtResource( 1 )
-usable_skill_color = Color( 0.588235, 0.831373, 0.2, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 20.0
@@ -30,7 +29,7 @@ rect_min_size = Vector2( 50, 84 )
 margin_right = 40.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 40, 20 )
-color = Color( 0.588235, 0.831373, 0.2, 1 )
+color = Color( 0.172549, 0.670588, 0.129412, 1 )
 
 [node name="Bars" type="VBoxContainer" parent="HBoxContainer"]
 editor/display_folded = true
