@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Skill" type="Node2D"]
+
+[node name="SkillTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="SkillTimer" to="." method="_on_SkillTimer_timeout"]

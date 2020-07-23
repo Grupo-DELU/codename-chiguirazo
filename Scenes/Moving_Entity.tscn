@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 30 )
+
+[node name="Moving Entity" type="KinematicBody2D"]
+
+[node name="Health" type="Node2D" parent="."]
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="Spawner" type="Position2D" parent="Attack"]
+
+[node name="ATimer" type="Timer" parent="Attack"]
+one_shot = true
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="Hittoboxu" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Supuraitu" type="Sprite" parent="."]

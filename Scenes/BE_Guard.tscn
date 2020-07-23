@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/ME_Base_Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/BE_base_enemy.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/BE_enem_healto.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Attack/BE_enem_attack.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/BE_enemy_movement.gd" type="Script" id=5]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Health" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Attack" parent="." index="1"]
+script = ExtResource( 4 )
+
+[node name="Movement" parent="." index="2"]
+script = ExtResource( 5 )
+
+[node name="Hittoboxu" parent="." index="3"]
+position = Vector2( -2.65369, 0 )
+
+[node name="PlayerDetector" parent="." index="5"]
+visible = true
+[connection signal="timeout" from="Attack/ATimer" to="Attack" method="_on_ATimer_timeout"]

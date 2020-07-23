@@ -1,0 +1,36 @@
+[gd_scene format=2]
+
+[node name="Bar" type="HBoxContainer"]
+margin_right = 105.0
+margin_bottom = 40.0
+
+[node name="Counter" type="MarginContainer" parent="."]
+margin_top = 13.0
+margin_right = 40.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="NinePatchRect" parent="Counter"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 14 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="Counter/Background"]
+margin_right = 22.0
+margin_bottom = 14.0
+valign = 1
+
+[node name="Number" type="Label" parent="Counter/Background"]
+margin_right = 40.0
+margin_bottom = 14.0
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="TextureProgress" parent="."]
+margin_left = 44.0
+margin_right = 45.0
+margin_bottom = 40.0
+size_flags_horizontal = 2

@@ -1,0 +1,155 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "attaku_base",
+"language": "GDScript",
+"path": "res://Scripts/Attack/ME_attaku_base.gd"
+}, {
+"base": "base_interface",
+"class": "base_enemy",
+"language": "GDScript",
+"path": "res://Scripts/BE_base_enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "base_interface",
+"language": "GDScript",
+"path": "res://Scripts/ME_base_interface.gd"
+}, {
+"base": "movemento_base",
+"class": "base_playeru_movement",
+"language": "GDScript",
+"path": "res://Scripts/BP_player_movement.gd"
+}, {
+"base": "Node2D",
+"class": "base_skill",
+"language": "GDScript",
+"path": "res://Scripts/BS_base_skill.gd"
+}, {
+"base": "Node2D",
+"class": "base_weapon",
+"language": "GDScript",
+"path": "res://Scripts/Attack/BW_base_weapon.gd"
+}, {
+"base": "attaku_base",
+"class": "enem_attack",
+"language": "GDScript",
+"path": "res://Scripts/Attack/BE_enem_attack.gd"
+}, {
+"base": "movemento_base",
+"class": "enemy_movement",
+"language": "GDScript",
+"path": "res://Scripts/BE_enemy_movement.gd"
+}, {
+"base": "Node2D",
+"class": "healto_base",
+"language": "GDScript",
+"path": "res://Scripts/ME_healto_base.gd"
+}, {
+"base": "Node2D",
+"class": "movemento_base",
+"language": "GDScript",
+"path": "res://Scripts/ME_movemento_base.gd"
+}, {
+"base": "attaku_base",
+"class": "pl_attack",
+"language": "GDScript",
+"path": "res://Scripts/Attack/BP_pl_attack.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "player_interface",
+"language": "GDScript",
+"path": "res://Scripts/BP_base_player.gd"
+} ]
+_global_script_class_icons={
+"attaku_base": "",
+"base_enemy": "",
+"base_interface": "",
+"base_playeru_movement": "",
+"base_skill": "",
+"base_weapon": "",
+"enem_attack": "",
+"enemy_movement": "",
+"healto_base": "",
+"movemento_base": "",
+"pl_attack": "",
+"player_interface": ""
+}
+
+[application]
+
+config/name="Chiwiraso"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://jdaeghh.png"
+
+[input]
+
+up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+skill1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+skill2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+skill3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Player_proj"
+2d_physics/layer_4="Enemy_proj"
+2d_physics/layer_5="Environment"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"
