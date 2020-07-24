@@ -1,7 +1,7 @@
 extends "res://Scripts/BS_base_skill.gd"
 
 export(float) var dash_duration :float = 1
-export(float) var dash_distance :float = 100
+export(float) var dash_distance :float = 50
 var dash_speed :float
 var direction :Vector2
 
