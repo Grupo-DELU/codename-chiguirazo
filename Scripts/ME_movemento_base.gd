@@ -32,15 +32,16 @@ func _physics_process(delta: float) -> void:
 		Apply_movement(acc)
 	entity.move_and_slide(v_direction)
 
-func Apply_friction(deceleration : Vector2):
+func Apply_friction(deceleration :Vector2):
 	if v_direction.length() > deceleration.length():
 		v_direction -= deceleration
 	else:
 		v_direction = Vector2.ZERO
 	
-func Apply_movement(acceleration: Vector2):
+func Apply_movement(acceleration :Vector2):
 	v_direction += acceleration
 	v_direction = v_direction.clamped(max_speed)
 
 func Get_input():
 	pass
+
