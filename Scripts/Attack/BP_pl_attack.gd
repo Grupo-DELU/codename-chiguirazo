@@ -22,12 +22,13 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") and c_attack:
-		Basic_attack()
+		c_attack = false
+		Basic_attack(damage)
 	#if Input.is_action_just_pressed("skill1") and skills["skill1"].can_use:
 	#	Skill1.Use_skill()
 	Check_for_skills()
 
-func Basic_attack() -> void:
+func Basic_attack(dmg) -> void:
 	Attack_timer.start()
 
 func Set_skill_cooldown(skill_name :String, time :float) -> void:
