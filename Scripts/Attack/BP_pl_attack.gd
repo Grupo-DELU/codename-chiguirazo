@@ -42,13 +42,14 @@ func Check_for_skills() -> void:
 	for input in skills.keys():
 		if Input.is_action_pressed(input):
 			if skills[input] != null:
-				print("skill exists")
+				
 				if skills[input].can_use:
 					skills[input].Use_skill()
 
 func Register_skill(skill :Node2D) -> void:
 	skill_count +=1
 	skill.name = "Skill"+str(skill_count)
+	skill.index = skill_count
 	
 	match skill_count:
 		1: skills["skill1"] = $"Skill1"

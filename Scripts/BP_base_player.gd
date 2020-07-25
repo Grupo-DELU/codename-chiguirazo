@@ -11,7 +11,7 @@ var xp_current :float = 0.0
 var xp_required :float = 5.0
 
 signal xp_add(body)
-signal skill_used(body)
+signal skill_used(body,id)
 
 func _ready():
 	update_stats()
@@ -22,7 +22,7 @@ func update_stats():
 	
 	#Attack.get_node("STimer").wait_time = skill_cooldown
 	Attack.Set_skill_cooldown("Skill1", skill_cooldown)
-	      #hacer una sola función para los cooldowns de todas las skills???
+		  #hacer una sola función para los cooldowns de todas las skills???
 
 func Player_take_damage(damage :float) ->void:   #Para ducktyping xd
 	$"Health".Take_damage(damage)

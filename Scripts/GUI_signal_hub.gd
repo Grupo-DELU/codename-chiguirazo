@@ -5,11 +5,11 @@ onready var hp_bar : HBoxContainer= $"HBoxContainer/Bars/Health"
 onready var hp_counter : NinePatchRect = hp_bar.get_node("Counter/Background")
 onready var hp_progress_bar: TextureProgress = hp_bar.get_node("ProgressBar")
 
-onready var exp_bar : HBoxContainer= $"HBoxContainer/Bars/Experience"
-onready var xp_counter : NinePatchRect = exp_bar.get_node("Counter/Background")
-onready var xp_progress_bar: TextureProgress = exp_bar.get_node("ProgressBar")
+onready var exp_bar :HBoxContainer= $"HBoxContainer/Bars/Experience"
+onready var xp_counter :NinePatchRect = exp_bar.get_node("Counter/Background")
+onready var xp_progress_bar :TextureProgress = exp_bar.get_node("ProgressBar")
 
-onready var skill_visual1 : ColorRect = $"HBoxContainer/Skills/ColorRect"
+onready var skill_visuals :HBoxContainer = $"HBoxContainer/Skills"
 
 
 #A lot of colors to see
@@ -40,16 +40,23 @@ func Modify_health(health :float) ->void:
 	#update healthbar#
 	hp_progress_bar.value = max(0,health)
 
-func Skill_feedback(player : KinematicBody2D) ->void:
+func Skill_feedback(player : KinematicBody2D, id :int) ->void:
 	var pAttack :Node = player.Attack  #Nodo de ataque
-	var skill : Node = pAttack.get_node("Skill1") #Cada skill tendrá su icono en laGUI
-	#Cada skill deberia emitir su propia señal ???
+	var skill_name = "Skill"+str(id)
+	
+	var skill : Node = pAttack.get_node(skill_name) #Cada skill tendrá su icono en laGUI
+	var skill_visual = skill_visuals.get_node(skill_name) #Los iconos de las skills tienen los mismos nombres de las skills
 	var cooldown_timer : Node = skill.get_node("SkillTimer")  #Señal cuando el cooldown acaba
 	
-	skill_visual1.color = skill_in_use #Se usó la skill
+	
 	if skill.is_prolongated: #casos particulares donde la skill no en insrantanea
+		skill_visual.color = skill_in_use #Se usó la skill
 		yield(skill,"b_finished")         #Se termino la skill 
-		skill_visual1.color = skill_in_cooldown
+		skill_visual.color = skill_in_cooldown
+	else:
+		skill_visual.color = skill_in_cooldown
+	
+	
 	yield(cooldown_timer,"timeout") #Se acaba el cooldown y el rectangulo vuelve a su color original
-	skill_visual1.color = skill_usable
+	skill_visual.color = skill_usable
 	

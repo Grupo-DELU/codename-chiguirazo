@@ -5,9 +5,8 @@ export(float) var dash_distance :float = 50
 var dash_speed :float
 var direction :Vector2
 
-var first_use: bool = true #Para inicializar ciertos nodos l primera vez que se usa la skill
 var prev_mspd :float #Se cambiará la vlocidad máxima, esto es para recuperarla
-var wolfie :Node2D #estos son los nodos
+#estos son los nodos
 var wolf_mov :Node2D
 var pre_dash :Vector2  #posición al empezar el dash
 
@@ -17,11 +16,9 @@ func _ready():
 
 func Use_skill() -> void:
 	#Player
-	#can_use = false
-	if first_use:
-		wolfie = Manager.Player
-		wolf_mov = wolfie.Movement
-		first_use = false
+	Skill_used_signal()
+	if wolf_mov == null: wolf_mov = player.Movement
+	can_use = false
 	
 	#distance and duration are set, calculate the speed
 	dash_speed = dash_distance/dash_duration *10
@@ -55,4 +52,3 @@ func End_dash() -> void:
 	#Just goin back to normal(?)
 	wolf_mov.max_speed = prev_mspd
 	set_physics_process(false)
-
