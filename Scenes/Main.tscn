@@ -17,6 +17,7 @@ position = Vector2( 515.873, 306.503 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 249.213, 299.073 )
+attack_cooldown = 1.5
 
 [node name="Walls" type="Node2D" parent="."]
 position = Vector2( -17.378, 315.685 )

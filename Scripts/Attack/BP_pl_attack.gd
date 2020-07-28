@@ -41,7 +41,7 @@ func Set_skill_cooldown(skill_name :String, time :float) -> void:
 
 func Check_for_skills() -> void:
 	for input in skills.keys():
-		if Input.is_action_pressed(input):
+		if Input.is_action_just_pressed(input):
 			if skills[input] != null:
 				
 				if skills[input].can_use:
