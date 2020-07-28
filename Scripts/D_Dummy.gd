@@ -56,7 +56,7 @@ func seek(target: Vector2) -> Vector2:
 func wander() -> Vector2:
 	var future = position + (velocity_direction.normalized() * WANDER_RING_DISTANCE)
 	var target = future + Vector2(WANDER_RING_RADIUS,0).rotated(rng.randf_range(0,2 * PI))
-	print(future)
+	#print(future)
 	return seek(target)
 	
 func apply_friction(deceleration):

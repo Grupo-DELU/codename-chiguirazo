@@ -57,8 +57,7 @@ func _process(delta):
 			if player_in_attack_range and not panic_state:
 				if Attack.c_attack:
 					state = States.Attack
-				else:
-					print("O.O")
+
 			steerings.Wander(self)
 			
 		States.Flee:

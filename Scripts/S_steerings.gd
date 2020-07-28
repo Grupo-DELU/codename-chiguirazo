@@ -20,7 +20,8 @@ var t_seeking :bool = true #Its_seeking_time
 func Attacc(enemy :Node2D) -> void:
 	#esperarqueterminelaanimaciondealerta#
 	if enemy.j_spotted == true:
-		print("pAnIc")
+		#print("pAnIc")
+		pass
 	
 	else:
 		#Va a seguir con la mirada al player hasta que se acabe el cooldown
@@ -32,7 +33,7 @@ func Attacc(enemy :Node2D) -> void:
 			pass
 		#Cuando se acabe dispara
 		else:
-			print("AJA!")
+			#print("AJA!")
 			enemy.get_node("Attack").Attack(p_position)
 
 func Wander(enemy :Node2D) -> void:
@@ -63,7 +64,7 @@ func Avoid(enemy:KinematicBody2D) -> Vector2:
 		if collider:  #Truey si el whisker está chocando
 			coll_point = w.get_collision_point()
 			if pos.distance_to(coll_point) < pos.distance_to(closest_coll_point): #¿Debo priorizar la 
-			                                                        #        colisión con este objeto?
+																	#        colisión con este objeto?
 				closest_collider = collider #de ser asi, lo guardo
 				closest_coll_point = coll_point
 				colliding_whisker = w

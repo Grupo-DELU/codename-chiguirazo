@@ -38,7 +38,8 @@ func Defense_change(new_defense: float)-> void:
 func Speed_change(new_speed: float) -> void:
 	max_speed = new_speed
 	update_stats()
-	print("Velocidad: " + str(max_speed))
+	if "Player" in name:
+		print("Velocidad: " + str(max_speed))
 
 func Acceleration_change(new_time):
 	acceleration_time = new_time
