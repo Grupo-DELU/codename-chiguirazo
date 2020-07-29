@@ -15,6 +15,9 @@ var player_in_panic_range: bool = true #Chequea si el jugadoor esta dentro del r
 var j_spotted : bool = false #Esto para correr la animacion de panico
 var panic_state: bool = false #Detecta si tiene poca vida
 
+
+export(float) var exp_points = 69
+
 enum States{
 	Wander, Attack, Flee, Avoid
 	} 
@@ -22,6 +25,7 @@ var state : int = States.Wander #Estado actual pal' cerebro
 
 func _ready():
 	update_stats()
+	Health.experience = exp_points
 	#right = true
 	#motion_direction = Vector2.RIGHT
 	randomize()

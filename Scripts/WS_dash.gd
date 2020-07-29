@@ -1,7 +1,7 @@
 extends "res://Scripts/BS_base_skill.gd"
 
 export(float) var dash_duration :float = 1
-export(float) var dash_distance :float = 50
+export(float) var dash_distance :float = 150
 var dash_speed :float
 var direction :Vector2
 
@@ -39,13 +39,14 @@ func Use_skill() -> void:
 
 func _physics_process(delta):
 	var dash_acl :float = dash_speed*1000 #acceleration that we use to reach the dash speed very quickly.
+	var mouse_distance = direction.length()
 	var traveled_distance :Vector2
 	
 	wolf_mov.Apply_movement(direction*dash_acl)
 	
 	#Check the condition for the dash to end (has the dash covered enough distance?)
 	traveled_distance = get_global_position() - pre_dash
-	if traveled_distance.length() >= dash_distance:
+	if traveled_distance.length() >= min(dash_distance,mouse_distance):
 		End_dash()
 
 func End_dash() -> void:
