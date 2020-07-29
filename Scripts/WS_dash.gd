@@ -2,14 +2,15 @@ extends "res://Scripts/BS_base_skill.gd"
 
 export(float) var dash_duration :float = 1
 export(float) var dash_distance :float = 150
+export(float) var dash_speed_multiplier :float = 1000
 var dash_speed :float
 var direction :Vector2
+
 
 var prev_mspd :float #Se cambiará la vlocidad máxima, esto es para recuperarla
 #estos son los nodos
 var wolf_mov :Node2D
 var pre_dash :Vector2  #posición al empezar el dash
-
 
 func _ready():
 	set_physics_process(false) #We´ll be using physics process to make the dash when necessary
@@ -38,18 +39,23 @@ func Use_skill() -> void:
 	
 
 func _physics_process(delta):
-	var dash_acl :float = dash_speed*1000 #acceleration that we use to reach the dash speed very quickly.
-	var mouse_distance = direction.length()
+	var dash_acl :float = dash_speed*dash_speed_multiplier #acceleration that we use to reach the dash speed very quickly.
+	var mouse_distance :float = direction.length()
 	var traveled_distance :Vector2
 	
-	wolf_mov.Apply_movement(direction*dash_acl)
+	
+	var post_dash :Vector2
 	
 	#Check the condition for the dash to end (has the dash covered enough distance?)
 	traveled_distance = get_global_position() - pre_dash
-	if traveled_distance.length() >= min(dash_distance,mouse_distance):
-		End_dash()
+	if traveled_distance.length() < min(dash_distance,mouse_distance):
+		wolf_mov.Apply_movement(direction*dash_acl)
+	else: End_dash()
+	
 
 func End_dash() -> void:
 	#Just goin back to normal(?)
+	wolf_mov.v_direction = Vector2.ZERO
 	wolf_mov.max_speed = prev_mspd
+
 	set_physics_process(false)

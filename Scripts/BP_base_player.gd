@@ -12,6 +12,11 @@ export(float) var operand_b :float = 2.5
 var xp_current :float = 0.0
 var xp_required :float
 
+#Base numbers for the stat increase per level#
+export(float) var lv_dmg_increase :float =  1
+export(float) var lv_def_increase :float =  0.5
+export(float) var lv_spd_increase :float =  5
+
 signal xp_add(body)
 signal skill_used(body,id)
 
@@ -58,16 +63,15 @@ func Level_up() -> void:
 	print("Nivel ", level, "!")
 	   #Cada nivel requiere de mas xp para subir al siguiente
 	
-	Speed_change(max_speed + 25*level)             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
-	Damage_change(damage + level)
-	Defense_change(defense + level)
+	Speed_change(max_speed + lv_spd_increase)             ##**EJEMPLO** de aumento de estadísticas (Lobito YUKA)
+	Damage_change(damage + lv_dmg_increase)
+	Defense_change(defense + lv_def_increase)
 	Health.current_helth = Health.max_health
 	emit_signal("health_updated",Health.current_helth)
 	
 	print("Player Current xp: " + str(xp_current))
 	print("Player Required xp: " + str(xp_required))
 
-##Test and choose one of the following##
 func Quadratic_level_progression() -> float:
 	
 	var x :int = level + 1 #x stands for the actual level
